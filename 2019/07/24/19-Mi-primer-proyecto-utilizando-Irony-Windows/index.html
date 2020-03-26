@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Mi primer proyecto utilizando Irony - Erick Navarro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Irony: Genera">
+<meta name="keywords" content="Compilers,C#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mi primer proyecto utilizando Irony">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/index.html">
+<meta property="og:site_name" content="Erick Navarro">
+<meta property="og:description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Irony: Genera">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/thumbnails/19.png">
+<meta property="og:updated_time" content="2020-03-26T03:45:52.818Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mi primer proyecto utilizando Irony">
+<meta name="twitter:description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Irony: Genera">
+<meta name="twitter:image" content="http://yoursite.com/images/thumbnails/19.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145306707-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-145306707-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Mi primer proyecto utilizando Irony" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow on GitHub" href="https://github.com/ericknavarro">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/thumbnails/19.png" alt="Mi primer proyecto utilizando Irony">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-24T14:21:58.000Z">2019-07-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 minutes read (About 2848 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Mi primer proyecto utilizando Irony
+            
+        </h1>
+        <div class="content">
+            <p>Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas.</p>
+<p>Las tecnologías a utilizar son:</p>
+<ul>
+<li><strong>Irony</strong>: Generador de analizadores léxicos y sintácticos que retorna un AST (Abstract Syntax Tree).</li>
+<li><strong>Visual Studio 2017</strong>: Entorno de desarrollo integrado utilizado para programar en C#.</li>
+<li><strong>Windows 10</strong>: Sistema Operativo.</li>
+<li><strong>Irony.dll</strong>: DLL que permite la integración de Irony con C#.</li>
+</ul>
+<p>El proyecto completo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a href="https://github.com/ericknavarro/ProyectoIronyCS" target="_blank" rel="noopener">Mi primer proyecto utilizando Irony</a></li>
+</ul>
+<p><strong><em>Irony</em></strong></p>
+<p><a href="https://archive.codeplex.com/?p=irony" target="_blank" rel="noopener">Irony</a> es un kit de desarrollo para implementar lenguajes en la plataforma .NET. A diferencia de la mayoría de las soluciones de estilo yacc / lex existentes, Irony no emplea ninguna generación de scanner (analizador léxico) o parser (analizador sintáctico) a partir de especificaciones gramaticales escritas en un meta-lenguaje especializado. En Irony, la gramática del lenguaje se codifica directamente en C# utilizando la sobrecarga de operadores para expresar construcciones gramaticales. Los módulos de scanner y parser de Irony utilizan la gramática codificada como una clase de C# para controlar el proceso de análisis. En la página principal de <a href="https://archive.codeplex.com/?p=irony" target="_blank" rel="noopener">Irony</a>, se anuncia que el proyecto se ha movido a un <a href="https://github.com/IronyProject/" target="_blank" rel="noopener">repositorio en GitHub</a>.</p>
+<p><strong><em>Analizador léxico (Scanner)</em></strong></p>
+<p>La principal tarea de un analizador léxico es leer los caracteres de entrada del programa fuente, agruparlos en lexemas y producir como salida una secuencia de tokens.</p>
+<ul>
+<li><p>Un <em>token</em> es un par que consiste en un nombre de token y un valor de atributo opcional.</p>
+</li>
+<li><p>Un <em>lexema</em> es una secuencia de caracteres en el programa fuente, que coinciden con el patrón para un token y que el analizador léxico identifica como una instancia de este tóken.</p>
+</li>
+<li><p>Un <em>patrón</em> es una descripción de la forma que pueden tomar los lexemas de un token.</p>
+</li>
+</ul>
+<p><strong><em>Analizador sintáctico (Parser)</em></strong></p>
+<p>El analizador sintáctico obtiene una cadena de tokens del analizador léxico y verifica que dicha cadena pueda generarse con la gramática para el lenguaje fuente. Una gramática proporciona una especificación precisa y fácil de entender de un lenguaje de programación.</p>
+<p><strong><em>Pre-requisitos</em></strong></p>
+<ul>
+<li><strong><em>Obtención del archivo <a href="https://archive.codeplex.com/?p=irony" target="_blank" rel="noopener">Irony.DDL</a></em></strong></li>
+</ul>
+<p>El <a href="https://github.com/IronyProject/" target="_blank" rel="noopener">proyecto de Irony</a> anteriormente mencionado es un proyecto de C#, el cual contiene la aplicación de Irony, sin embargo, a nosotros únicamente nos interesa las librerías que este proyecto genera, para obtener dichas librerías debemos seguir los siguientes pasos: </p>
+<ol>
+<li>Descargar el repositorio completo de Irony desde <a href="https://github.com/IronyProject/Irony/" target="_blank" rel="noopener">GitHub</a>.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/01.png">
+<ol start="2">
+<li>Descomprimimos el repositorio e ingresamos a la carpeta <em>Irony.Interpreter</em></li>
+</ol>
+
+<ol start="3">
+<li>Dentro de la carpeta <em>Irony.Interpreter</em>, encontraremos el proyecto <em>015.Irony.Interpreter.csproj</em>, debemos abrir este proyecto con Visual Studio.</li>
+</ol>
+
+<ol start="4">
+<li>Al tener abierto el proyecto en Visual Studio, procedemos a dar click derecho en el nombre del proyecto → “Build Solution” en el nombre del .</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/04.png">
+<ol start="5">
+<li>Luego de haber ejecutado exitosamente la opción “Build Solution” se creará la carpeta <em>bin/Debug</em> dentro de la carpeta del proyecto <em>Irony.Interpreter</em>. Encontraremos en esta carpeta generada dos carpetas: <em>net40</em>, <em>netstandard2.0</em>. Nosotros escogeremos la carpeta <em>net40</em>, que corresponde a .NET Framework 4.0, nosotros escogeremos esta que sería la versión más reciente, que además es compatible con el proyecto que crearemos en Visual Studio 2017.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/05.png">
+<ol start="6">
+<li>Dentro de la carpeta <em>net40</em> encontraremos el archivo Irony.dll, que utilizaremos en nuestro proyecto.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/06.png">
+<ul>
+<li><strong><em>Creación del proyecto en el que utilizaremos Irony</em></strong></li>
+</ul>
+<ol>
+<li>Abrimos Visual Studio y seleccionamos la opción “File” → “New” → “Project…”.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/07.png">
+<ol start="2">
+<li>Una vez abierto el wizard para crear nuevos proyectos seleccionamos el apartado “Visual C#” → “Windows Desktop” → “Console App (.NET Framework)” y le pondremos como nombre ProyectoIronyCS.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/08.png">
+<ol start="3">
+<li>Posteriormente creamos una carpeta lib dentro de nuestro proyecto, para ello vamos al explorador de soluciones y hacemos click derecho en el nombre del proyecto, “Add” → “New Folder”. En la carpeta <em>lib</em> recién creada, pegamos el archivo <em>Irony.dll</em> anteriormente generado.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/09.png">
+<ol start="4">
+<li>Luego de pegar el archivo <em>Irony.dll</em>, volvemos al explorador de soluciones y damos click derecho en la carpeta <em>lib</em>, “Add” → “Existing Item…”.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/09_02.png">
+<ol start="5">
+<li>Buscamos el archivo <em>Irony.dll</em> que acabamos de pegar en la carpeta <em>lib</em> y lo agregamos.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/09_03.png">
+<ol start="6">
+<li>Importamos la librería <em>Irony.dll</em> que acabamos de pegar en nuestra carpeta <em>lib</em>, para hacerlo daremos click derecho en “References” → “Add Reference…”</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/10.png">
+<ol start="7">
+<li>Esto nos desplegara una nueva ventana, seleccionamos la opción “Browse…” y seleccionamos nuestro archivo .dll y daremos click en aceptar.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/11.png">
+<ul>
+<li><strong><em>Creación de la gramática</em></strong></li>
+</ul>
+<ol>
+<li>La creación de la gramática se realiza por medio de un archivo .cs, para ello agregaremos primero una carpeta a la solución con el nombre de analizador, esto no es completamente necesario, lo hacemos para tener el código organizado.<br>Para crear la carpeta es clic derecho sobre el nombre de nuestro proyecto en el explorador de soluciones. “Add” → “New Folder”, le asignamos el nombre “analizador”.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/12.png">
+<ol start="2">
+<li>Dentro de la carpeta creamos una nueva clase de nombre <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs" target="_blank" rel="noopener">“Gramatica”</a> que contendrá toda la gramática para Irony, para ello hacemos click derecho sobre la carpeta “Add” → “Class”.</li>
+</ol>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/13.png">
+<hr>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/14.png">
+<ol start="3">
+<li>En la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs" target="_blank" rel="noopener">“Gramatica”</a> incorporamos el código de la gramática correspondiente a este ejemplo, dicho código puede consultarse en el <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs" target="_blank" rel="noopener">repositorio</a>.</li>
+</ol>
+<ul>
+<li><strong><em>Explicación de la gramática creada</em></strong></li>
+</ul>
+<p>A continuación se explican los principales elementos de la clase gramática:</p>
+<ul>
+<li>Se importan las librerías de Irony a utilizar</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">using Irony.Ast;</span><br><span class="line">using Irony.Parsing;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Nos aseguramos de que la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs" target="_blank" rel="noopener">“Gramatica”</a> herede de la clase “Grammar” de Irony.Parsing.</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Gramatica : Grammar</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Una de las principales características de Irony es poder organizar todo en regiones, para crear una región se debe escribir el nombre de la región de la siguiente manera:</p>
+<ul>
+<li>Se comienza la región con “#region ” seguido del nombre de la región </li>
+<li>Se finaliza la región con “#endregion”</li>
+</ul>
+</li>
+<li><p>Para la gramática anterior se definen las siguientes regiones:</p>
+<ul>
+<li>ER: Expresiones regulares de los tokens que nuestra gramática reconocerá.</li>
+<li>Terminales: Conjunto de terminales que serán utilizados en nuestra gramática, que no fueron aceptados por ninguna de las expresiones regulares definidas anteriormente.</li>
+<li>No terminales: Conjunto de no terminales que serán utilizados en nuestra gramática.</li>
+<li>Gramática: Región donde se define la gramática. </li>
+<li>Preferencia: Configuraciones especiales necesarias para el uso de Irony.</li>
+</ul>
+</li>
+<li><p>La gramática debe reconocer números enteros y decimales, por lo que creamos las expresiones regulares para reconocer estos tokens. Para ello se crean objetos del tipo “RegexBasedTerminal”, el cual recibirá de parámetros: el nombre con que se va a reducir y la expresión regular a cumplir.</p>
+</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var NUMERO = new NumberLiteral(<span class="hljs-string">"Numero"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Posteriormente se escriben los terminales, para estos no es necesario escribir expresiones regulares pues son caracteres simples o bien palabras reservadas por esta razón es que no se incluyeron en la región ER. Para definir los terminales se crean variables instanciadas con la función “ToTerm”, que recibe de parámetro el símbolo terminal con el que debe de cumplir, para el ejemplo se definieron los siguientes:</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var REVALUAR = ToTerm(<span class="hljs-string">"Evaluar"</span>);</span><br><span class="line">var PTCOMA = ToTerm(<span class="hljs-string">";"</span>);</span><br><span class="line">var PARIZQ = ToTerm(<span class="hljs-string">"("</span>);</span><br><span class="line">var PARDER = ToTerm(<span class="hljs-string">")"</span>);</span><br><span class="line">var CORIZQ = ToTerm(<span class="hljs-string">"["</span>);</span><br><span class="line">var CORDER = ToTerm(<span class="hljs-string">"]"</span>);</span><br><span class="line">var MAS = ToTerm(<span class="hljs-string">"+"</span>);</span><br><span class="line">var MENOS = ToTerm(<span class="hljs-string">"-"</span>);</span><br><span class="line">var POR = ToTerm(<span class="hljs-string">"*"</span>);</span><br><span class="line">var DIVIDIDO = ToTerm(<span class="hljs-string">"/"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Se agrega precedencia a los operadores aritméticos, esto se hace con la función “RegisterOperators” que recibe como parámetro el nivel de precedencia y la lista de terminales que corresponde a dicho nivel.</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RegisterOperators(1, MAS, MENOS);</span><br><span class="line">RegisterOperators(2, POR, DIVIDIDO);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Se crean los No Terminales para nuestra gramática, para esta declaración se deben crear objetos de tipo “NonTerminal” que en su constructor recibe de parámetro el nombre del no terminal.</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NonTerminal ini = new NonTerminal(<span class="hljs-string">"ini"</span>);</span><br><span class="line">NonTerminal instruccion = new NonTerminal(<span class="hljs-string">"instruccion"</span>);</span><br><span class="line">NonTerminal instrucciones = new NonTerminal(<span class="hljs-string">"instrucciones"</span>);</span><br><span class="line">NonTerminal expresion = new NonTerminal(<span class="hljs-string">"expresion"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Con lo anterior definido, se crea la gramática, para ello es importante resaltar los siguientes puntos:</p>
+<ul>
+<li>Toda producción debe iniciar con el nombre de algún no terminal previamente declarado y el atributo Rule “Produccion.Rule”.</li>
+<li>Se finalizan las producciones con punto y coma.</li>
+<li>Se pueden tener diferentes producciones en un solo no terminal, para ello cada una de ellas se separa con un “|”.</li>
+<li>Para concatenar terminales o no terminales a la producción se debe usar siempre el signo “+”.</li>
+</ul>
+</li>
+<li><p>Gramática utilizada:</p>
+</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ini.Rule = instrucciones;</span><br><span class="line"></span><br><span class="line">instrucciones.Rule = instruccion + instrucciones</span><br><span class="line">    | instruccion;</span><br><span class="line"></span><br><span class="line">instruccion.Rule = REVALUAR + CORIZQ + expresion + CORDER + PTCOMA;</span><br><span class="line"></span><br><span class="line">expresion.Rule = MENOS + expresion</span><br><span class="line">    | expresion + MAS + expresion</span><br><span class="line">    | expresion + MENOS + expresion</span><br><span class="line">    | expresion + POR + expresion</span><br><span class="line">    | expresion + DIVIDIDO + expresion</span><br><span class="line">    | NUMERO</span><br><span class="line">    | PARIZQ + expresion + PARDER;</span><br></pre></td></tr></table></figure>
+<p>Para finalizar, es necesario declarar nuestra producción de inicio, para ello asignamos al atributo Root el no terminal con el cual comenzara nuestra gramática.</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.Root = ini;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>Recorrido del AST</em></strong></li>
+</ul>
+<p>Para realizar este recorrido se crea la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs" target="_blank" rel="noopener">“Sintactico”</a> dentro de la carpeta analizador, tal como creamos la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs" target="_blank" rel="noopener">“Gramatica”</a>:</p>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/17.png">
+<p>El código de la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs" target="_blank" rel="noopener">“Sintactico”</a>, puede consultarse en el <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs" target="_blank" rel="noopener">repositorio</a>.</p>
+<p>A continuación analizaremos el contenido de la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs" target="_blank" rel="noopener">“Sintactico”</a>, pero antes de continuar es necesario tener presentes los siguientes conceptos de Irony:</p>
+<ul>
+<li><em>ParseTree</em>: AST devuelto por Irony que será posteriormente recorrido y analizado.</li>
+<li><em>ParseTreeNode</em>: Cada uno de los nodos del <em>ParseTree</em>, el atributo mas importante de este nodo es:<ul>
+<li><em>ChildNodes</em>: Atributo de cada <em>ParseTreeNode</em>, este atributo es de tipo Array y contiene todas las cualidades de una lista, tales como Count, ElementAt, etc. Si esta lista esta vacía significa que el nodo es un nodo hoja, caso contrario es un subárbol.</li>
+</ul>
+</li>
+</ul>
+<p>Como ya hemos mencionado, Irony no acepta acciones entre sus producciones, se limita a devolver el AST (Abstract Syntax Tree) que arma luego de ser aceptada la cadena de entrada.</p>
+<p>Dentro de la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs" target="_blank" rel="noopener">“Sintactico”</a>, podemos encontrar el método analizar para cargar el árbol y disparar el recorrido de dicho árbol a través de una llamada al método instrucciones a la que se le manda el nodo raíz del árbol.</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void analizar(String cadena)</span><br><span class="line">&#123;</span><br><span class="line">    Gramatica gramatica = new Gramatica();</span><br><span class="line">    LanguageData lenguaje = new LanguageData(gramatica);</span><br><span class="line">    Parser parser = new Parser(lenguaje);</span><br><span class="line">    ParseTree arbol = parser.Parse(cadena);</span><br><span class="line">    ParseTreeNode raiz = arbol.Root;</span><br><span class="line"></span><br><span class="line">    instrucciones(raiz.ChildNodes.ElementAt(0));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>En el método tenemos lo siguiente:</p>
+<ol>
+<li>Declarar un objeto de la clase que contiene nuestra gramática, en este caso será un objeto de la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs" target="_blank" rel="noopener">“Gramatica”</a>.</li>
+<li>Crear un objeto de la clase “LanguageData”, el cual recibirá de parámetro la variable de nuestra gramática.</li>
+<li>Crear un objeto de la clase “Parser”, el cual recibirá de parámetro la variable de la clase “LenguageData”.</li>
+<li>Obtener el AST (Abstract Syntax Tree) de la entrada procesada creando un objeto de la clase “ParseTree”.</li>
+<li>Obtener la raíz del árbol con el atributo “root” del ParseTree, este es un objeto de tipo “ParseTreeNode” y contiene toda la información del nodo, en este caso el nodo raíz.</li>
+<li>Invocar el método instrucciones enviándole como parámetro el nodo raíz del AST.</li>
+</ol>
+<p>Para recorrer el AST (Abstract Syntax Tree) es importante comprender cómo está armado según la gramática definida. Para la entrada: “Evaluar[1+1];”, por ejemplo, el árbol que arma nuestra gramática es:</p>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/15.png">
+<p>Analizando la imagen con la estructura del árbol tenemos que:</p>
+<ul>
+<li>Los No terminales se guardan en el nodo únicamente con el nombre que se les dio para reducir al momento de declararlos.</li>
+<li>Los Terminales se guardan junto a un Keyword.</li>
+<li>Los Token dados con expresiones regulares, guardan el valor original con que coincidió la ER, seguido del nombre que se le dio para reducir.</li>
+</ul>
+<p>Teniendo lo anterior en cuenta creamos dentro de la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs" target="_blank" rel="noopener">“Sintactico”</a> un set de funciones representativas para cada producción, estas siempre recibirán como  parámetro el nodo padre y usaran la información almacenada en los nodos para ejecutar las acciones correspondientes.</p>
+<ul>
+<li><em>Para las producciones del no terminal “instrucciones”, tenemos la siguiente función:</em></li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void instrucciones(ParseTreeNode actual) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (actual.ChildNodes.Count == 2)</span><br><span class="line">    &#123;</span><br><span class="line">        instruccion(actual.ChildNodes.ElementAt(0));</span><br><span class="line">        instrucciones(actual.ChildNodes.ElementAt(1));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        instruccion(actual.ChildNodes.ElementAt(0));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>En nuestra gramática, el no terminal “instrucciones”, contaba con 2 posibles producciones, una en la cual tenia dos hijos y en la otra solamente uno, con esta información y usando la propiedad ChildNodes, hacemos el recorrido de esa producción, haciendo llamadas a otras funciones según el no terminal encontrado.</p>
+<ul>
+<li><em>Para la producción del no terminal “instruccion”, tendremos la siguiente función:</em></li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void instruccion(ParseTreeNode actual) &#123;</span><br><span class="line">    Console.WriteLine(<span class="hljs-string">"El valor de la expresion es: "</span> + expresion(actual.ChildNodes.ElementAt(2)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Este no terminal posee solamente una producción, por lo cual no es necesario evaluar condiciones para determinar qué método debe ejecutar posteriormente. Este método imprime “El valor de la expresión es:”, seguido del resultado que nos devuelve la llamada a expresión.</p>
+<ul>
+<li><em>Para la producción de “expresion”, tendremos la siguiente función:</em></li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public double expresion(ParseTreeNode actual) &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (actual.ChildNodes.Count == 3) &#123;</span><br><span class="line">        string tokenOperador = actual.ChildNodes.ElementAt(1).ToString().Split(<span class="hljs-string">' '</span>)[0];</span><br><span class="line">        switch (tokenOperador) &#123;</span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">"+"</span>:</span><br><span class="line">                <span class="hljs-built_in">return</span> expresion(actual.ChildNodes.ElementAt(0))  + expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">"-"</span>:</span><br><span class="line">                <span class="hljs-built_in">return</span> expresion(actual.ChildNodes.ElementAt(0)) - expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">"*"</span>:</span><br><span class="line">                <span class="hljs-built_in">return</span> expresion(actual.ChildNodes.ElementAt(0)) * expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">"/"</span>:</span><br><span class="line">                <span class="hljs-built_in">return</span> expresion(actual.ChildNodes.ElementAt(0)) / expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            default:</span><br><span class="line">                <span class="hljs-built_in">return</span> expresion(actual.ChildNodes.ElementAt(1));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (actual.ChildNodes.Count == 2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-built_in">return</span> -1 * expresion(actual.ChildNodes.ElementAt(1));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-built_in">return</span> Double.Parse(actual.ChildNodes.ElementAt(0).ToString().Split(<span class="hljs-string">' '</span>)[0]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Como en los casos anteriores, debemos plantear condiciones para determinar qué producción se está reconociendo, estas condiciones pueden basarse en la cantidad de hijos de la producción.</p>
+<ul>
+<li>Si tiene un hijo se trata de un número entero o decimal, por lo cual retornamos únicamente el valor del número.</li>
+<li>Si tiene dos hijos es la producción de “menos &lt;expresión&gt;” por lo cual multiplicamos el valor de la expresión por menos uno.</li>
+<li><p>Si tiene 3 hijos puede tratarse de una suma, resta, multiplicación o división, para determinar de cuál se trata, recogemos el valor del hijo de en medio que contiene el operador y ejecutamos según corresponda, esto se hace dentro de la sentencia switch del método.</p>
+</li>
+<li><p><strong><em>Interpretación del archivo de entrada</em></strong></p>
+</li>
+</ul>
+<p>Esta interpretación se ejecuta dentro del método Main de la clase <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/Program.cs" target="_blank" rel="noopener">“Program”</a> que se creo automáticamente en nuestro proyecto.</p>
+<p>En esta clase se importa la referencia a la carpeta analizador para poder usar la clase Sintactico recién creada:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using ProyectoIronyCS.sol.com.analizador;</span><br></pre></td></tr></table></figure>
+<p>Y en el método Main encontramos lo siguiente:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string text = System.IO.File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @<span class="hljs-string">"..\..\input"</span>, <span class="hljs-string">"entrada.txt"</span>));</span><br><span class="line">Sintactico sintac = new Sintactico();</span><br><span class="line">sintac.analizar(text);</span><br></pre></td></tr></table></figure>
+<p>Estos comandos realizan las siguientes acciones:</p>
+<ol>
+<li>Cargar el contenido del archivo <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/input/entrada.txt" target="_blank" rel="noopener">“entrada.txt”</a> que debe ser creado dentro de la carpeta <a href="https://github.com/ericknavarro/ProyectoIronyCS/tree/master/ProyectoIronyCS/input" target="_blank" rel="noopener"><em>/input</em></a> que también debemos crear dentro de nuestro proyecto.</li>
+<li>Crear el analizador sintáctico a utilizar</li>
+<li>Analizar el texto del archivo de entrada</li>
+</ol>
+<p>El archivo de <a href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/input/entrada.txt" target="_blank" rel="noopener">“entrada.txt”</a> tiene el siguiente contenido:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Evaluar[1+1];</span><br><span class="line">Evaluar[1+1*2];</span><br><span class="line">Evaluar[-(1+1*6/3-5+7)];</span><br><span class="line">Evaluar[-(1+1*6/3-5+1*-2)];</span><br><span class="line">Evaluar[-(1+1)];</span><br></pre></td></tr></table></figure>
+<p>Y tras analizarlo con nuestra solución genera la siguiente salida:</p>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/18.png">
+<p>Como podemos ver, obtenemos la salida esperada.</p>
+<p>Y el AST que formaría dicha entrada sería:</p>
+<img src="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/16.png">
+<p><strong><em>Acerca del autor:</em></strong></p>
+<p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a href="https://github.com/201504481" target="_blank" rel="noopener">Julio Arango</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<p><strong><em>Fuentes consultadas:</em></strong></p>
+<p>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/C/">C#</a>, <a class="has-link-grey -link" href="/tags/Compilers/">Compilers</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/01/20-Interprete-sencillo-utilizando-Jison-con-Nodejs-Ubuntu/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Intérprete sencillo utilizando Jison con Nodejs (Ubuntu)</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/">
+                <span class="level-item">Mi primer proyecto utilizando Gold Parser</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.jpg" alt="Erick Navarro">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Erick Navarro
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Data Engineering Manager
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Guatemala City</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        26
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ericknavarro" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ericknavarro">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Linkedin" href="https://www.linkedin.com/in/ericknd">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/AWS/">
+            <span class="level-start">
+                <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/AWS/Alexa-Skills/">
+            <span class="level-start">
+                <span class="level-item">Alexa Skills</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/CloudFront/">
+            <span class="level-start">
+                <span class="level-item">CloudFront</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/EC2/">
+            <span class="level-start">
+                <span class="level-item">EC2</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/Lambda/">
+            <span class="level-start">
+                <span class="level-item">Lambda</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/Route-53/">
+            <span class="level-start">
+                <span class="level-item">Route 53</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/S3/">
+            <span class="level-start">
+                <span class="level-item">S3</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/">
+            <span class="level-start">
+                <span class="level-item">Computer Science</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">18</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/Compilers/">
+            <span class="level-start">
+                <span class="level-item">Compilers</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/Data-Structures/">
+            <span class="level-start">
+                <span class="level-item">Data Structures</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Programming/">
+            <span class="level-start">
+                <span class="level-item">Programming</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Programming/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Alexa-Skills/" style="font-size: 10px;">Alexa Skills</a> <a href="/tags/C/" style="font-size: 14px;">C#</a> <a href="/tags/CloudFront/" style="font-size: 12px;">CloudFront</a> <a href="/tags/Compilers/" style="font-size: 20px;">Compilers</a> <a href="/tags/Data-Structures/" style="font-size: 12px;">Data Structures</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/Python/" style="font-size: 12px;">Python</a> <a href="/tags/Route-53/" style="font-size: 10px;">Route 53</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/Visual-Basic/" style="font-size: 16px;">Visual Basic</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T01:09:28.000Z">2020-03-15</time></div>
+                    <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:17:25.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:14:34.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/22.png" alt="Intérprete sencillo utilizando Irony y C#">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-07T21:01:14.000Z">2019-08-07</time></div>
+                    <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando Irony y C#</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa-Skills/">
+                        <span class="tag">Alexa Skills</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C#</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Compilers/">
+                        <span class="tag">Compilers</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-Structures/">
+                        <span class="tag">Data Structures</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EC2/">
+                        <span class="tag">EC2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Lambda/">
+                        <span class="tag">Lambda</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Route-53/">
+                        <span class="tag">Route 53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Visual-Basic/">
+                        <span class="tag">Visual Basic</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T01:09:28.000Z">2020-03-15</time></div>
+                    <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:17:25.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:14:34.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/22.png" alt="Intérprete sencillo utilizando Irony y C#">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-07T21:01:14.000Z">2019-08-07</time></div>
+                    <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando Irony y C#</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa-Skills/">
+                        <span class="tag">Alexa Skills</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C#</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Compilers/">
+                        <span class="tag">Compilers</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-Structures/">
+                        <span class="tag">Data Structures</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EC2/">
+                        <span class="tag">EC2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Lambda/">
+                        <span class="tag">Lambda</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Route-53/">
+                        <span class="tag">Route 53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Visual-Basic/">
+                        <span class="tag">Visual Basic</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Mi primer proyecto utilizando Irony" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Julio Arango&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

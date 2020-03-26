@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Mi primer proyecto utilizando Gold Parser - Erick Navarro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Gold Parser B">
+<meta name="keywords" content="Compilers,Visual Basic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mi primer proyecto utilizando Gold Parser">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/index.html">
+<meta property="og:site_name" content="Erick Navarro">
+<meta property="og:description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Gold Parser B">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/thumbnails/18.png">
+<meta property="og:updated_time" content="2020-03-26T03:45:52.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mi primer proyecto utilizando Gold Parser">
+<meta name="twitter:description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Gold Parser B">
+<meta name="twitter:image" content="http://yoursite.com/images/thumbnails/18.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145306707-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-145306707-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Mi primer proyecto utilizando Gold Parser" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow on GitHub" href="https://github.com/ericknavarro">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/thumbnails/18.png" alt="Mi primer proyecto utilizando Gold Parser">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-22T17:40:13.000Z">2019-07-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 minutes read (About 2524 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Mi primer proyecto utilizando Gold Parser
+            
+        </h1>
+        <div class="content">
+            <p>Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas.</p>
+<p>Las tecnologías a utilizar son:</p>
+<ul>
+<li><strong>Gold Parser Builder</strong>: Generador de analizadores léxicos y sintácticos diseñado para funcionar en múltiples lenguajes de programación.</li>
+<li><strong>Visual Studio 2017</strong>: Entorno de desarrollo integrado para programar Visual Basic y C#, entre otros.</li>
+<li><strong>Windows 10</strong>: Sistema operativo</li>
+</ul>
+<p>El proyecto completo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a href="https://github.com/ericknavarro/ProyectoGoldParserVB" target="_blank" rel="noopener">Mi primer proyecto utilizando Gold Parser</a></li>
+</ul>
+<p><strong><em>Gold Parser</em></strong></p>
+<p><a href="http://www.Goldparser.org/" target="_blank" rel="noopener">Gold Parser</a> es un generador de analizadores léxicos y sintácticos que soporta lenguajes tales como C#, COBOL, DELPHI, Visual Basic, Java entre otros. Este programa realiza de manera conjunta el análisis léxico y sintáctico, por lo que no tenemos la necesidad de recurrir a ningún programa externo.</p>
+<p>La principal tarea de un analizador léxico es leer los caracteres de entrada del programa fuente, agruparlos en lexemas y producir como salida una secuencia de tokens.</p>
+<ul>
+<li><p>Un <em>token</em> es un par que consiste en un nombre de token y un valor de atributo opcional.</p>
+</li>
+<li><p>Un <em>lexema</em> es una secuencia de caracteres en el programa fuente, que coinciden con el patrón para un token y que el analizador léxico identifica como una instancia de este tóken.</p>
+</li>
+<li><p>Un <em>patrón</em> es una descripción de la forma que pueden tomar los lexemas de un token.</p>
+</li>
+</ul>
+<p>El analizador sintáctico obtiene una cadena de tokens del analizador léxico y verifica que dicha cadena pueda generarse con la gramática para el lenguaje fuente. Una gramática proporciona una especificación precisa y fácil de entender de un lenguaje de programación.</p>
+<p><strong><em>Pre-requisitos</em></strong></p>
+<ul>
+<li><a href="http://www.Goldparser.org/builder/index.htm" target="_blank" rel="noopener">Gold Parser Builder</a></li>
+</ul>
+<p>Este programa puede descargarse de la <a href="http://www.Goldparser.org/builder/index.htm" target="_blank" rel="noopener">página oficial de Gold Parser</a></p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/01.png">
+<p>Descomprimimos el archivo ZIP descargado y ejecutamos el archivo setup.exe que encontraremos dentro de los files descomprimidos.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/02.png">
+<p>Esto nos desplegará el asistente de instalación, en la primera ventana no debemos de seleccionar nada, por lo que únicamente presionaremos el botón de siguiente.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/03.png">
+<p>Posteriormente se nos preguntara en que ruta deseamos instalar Gold Parser, en este caso dejaremos la ruta por defecto que es “C:\Program Files (x86)\Gold Parser Builder”, seleccionar si queremos instalarlo para todos los usuarios o solo para nosotros, en este caso seleccionaremos “Everyone” para que todos los usuarios puedan utilizarlo. Damos click en siguiente para continuar con la instalación.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/04.png">
+<p>Luego se nos mostrará una ventana que pide nuestra confirmación para continuar con la instalación de Gold Parser, hacemos click en siguiente.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/05.png">
+<p>Por último se nos mostrará la ventana de confirmación que indica que Gold Parser fue instalado correctamente.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/06.png">
+<p><strong><em>Generando nuestro analizador léxico y sintáctico con Gold Parser</em></strong></p>
+<p>Hacemos click en el botón de Windows y buscamos “gold parser builder”.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/07.png">
+<p>Ejecutamos la aplicación Gold Parser Builder y tendremos un ambiente de trabajo como el que se muestra a continuación.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/08.png">
+<p>Lo primero que debemos hacer para comenzar a trabajar con Gold Parser Builder es definir la gramática, el ejemplo que inspiró este tutorial fue realizado con Jlex y Cup:</p>
+<ul>
+<li><a href="/2019/04/26/02-Mi-primer-proyecto-utilizando-Jlex-y-Cup-Windows/" title="Mi primer proyecto utilizando Jlex y Cup (Windows)">Mi primer proyecto utilizando Jlex y Cup (Windows)</a>
+</li>
+</ul>
+<p>La gramática planteada para Jlex y Cup era ambigua y dicha ambigüedad se resolvía indicando de forma explicita la precedencia de los operadores aritméticos:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">precedence left MAS,MENOS;</span><br><span class="line">precedence left POR,DIVIDIDO;</span><br><span class="line">precedence right UMENOS;</span><br></pre></td></tr></table></figure>
+<p>Cup permite definir la precedencia y asociatividad de los operadores de forma explícita, en el caso de Gold Parser, esta opción no está disponible, por lo que es necesario utilizar una gramática no ambigua que respete la precedencia y asociatividad de los operadores.</p>
+<p>Tomando en cuenta lo anterior, se propone la siguiente gramática escrita con la sintaxis propia de Gold Parser:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">"Name"</span>    = <span class="hljs-string">'Mi Primer Proyecto en Gold Parser'</span></span><br><span class="line"><span class="hljs-string">"Author"</span>  = <span class="hljs-string">'Luis Lizama'</span></span><br><span class="line"><span class="hljs-string">"Version"</span> = <span class="hljs-string">'1.0'</span> </span><br><span class="line"><span class="hljs-string">"About"</span>   = <span class="hljs-string">'Ejemplo de una gramática simple que reconoce expresiones aritméticas'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-string">"Case Sensitive"</span> = False </span><br><span class="line"><span class="hljs-string">"Start Symbol"</span>   = &lt;Statements&gt;</span><br><span class="line">    </span><br><span class="line">DECIMAL = &#123;Digit&#125;+<span class="hljs-string">'.'</span>&#123;Digit&#125;+</span><br><span class="line">ENTERO = &#123;Digit&#125;+</span><br><span class="line"></span><br><span class="line">&lt;Statements&gt; ::= &lt;Statement&gt; &lt;Statements&gt;</span><br><span class="line">               | &lt;Statement&gt;</span><br><span class="line"></span><br><span class="line">&lt;Statement&gt;  ::= Evaluar <span class="hljs-string">'['</span> &lt;Expression&gt; <span class="hljs-string">']'</span><span class="hljs-string">';'</span></span><br><span class="line">               </span><br><span class="line">&lt;Expression&gt;   ::= &lt;Expression&gt; <span class="hljs-string">'+'</span> &lt;Mult Exp&gt; </span><br><span class="line">                 | &lt;Expression&gt; <span class="hljs-string">'-'</span> &lt;Mult Exp&gt; </span><br><span class="line">                 | &lt;Mult Exp&gt; </span><br><span class="line"></span><br><span class="line">&lt;Mult Exp&gt;    ::= &lt;Mult Exp&gt; <span class="hljs-string">'*'</span> &lt;Negate Exp&gt; </span><br><span class="line">                | &lt;Mult Exp&gt; <span class="hljs-string">'/'</span> &lt;Negate Exp&gt; </span><br><span class="line">                | &lt;Negate Exp&gt; </span><br><span class="line"></span><br><span class="line">&lt;Negate Exp&gt;  ::= <span class="hljs-string">'-'</span> &lt;Value&gt; </span><br><span class="line">                | &lt;Value&gt; </span><br><span class="line"></span><br><span class="line">&lt;Value&gt;       ::= ENTERO </span><br><span class="line">                | DECIMAL </span><br><span class="line">                | <span class="hljs-string">'('</span> &lt;Expression&gt; <span class="hljs-string">')'</span></span><br></pre></td></tr></table></figure>
+<p>Toda la documentación relacionada con la sintaxis de Gold Parser puede encontrarse en la <a href="http://www.goldparser.org/" target="_blank" rel="noopener">página oficial</a>.</p>
+<p>Una vez tengamos lista nuestra gramática, la ingresamos en la ventana Grammar de la aplicación Gold Parser Builder (para esto basta con copiar y pegar la gramática mostrada anteriormente).</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/09.png">
+<p>Luego procedemos a guardar la gramática seleccionando la opción “File” → “Save”, el archivo resultante tendrá extensión GRM, que es una extensión propia de Gold Parser.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/20.png">
+<p>El archivo GRM con la gramática utilizada para este ejemplo está disponible en la <a href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica" target="_blank" rel="noopener">carpeta Gramática</a> del repositorio de este ejemplo.</p>
+<p>Posteriormente seleccionamos la opción “Project” → “Analyze the Grammar”, esto analizará la gramática y nos mostrará los conflictos si existieran.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/10.png">
+<p>Debemos corregir todos los errores antes de continuar, para este ejemplo no había ninguno. Esto podemos confirmarlo en la parte inferior de nuestro editor de Gold Parser Builder.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/11.png">
+<p>Si existiesen errores o notificaciones se nos mostrarán en una ventana emergente de la siguiente manera:</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/12.png">
+<p>En este caso no teníamos errores, así que podemos proseguir con la creación de las tablas para el análisis LALR. Esto lo hacemos seleccionando la opción “Project” → “Create LALR Parse Tables”</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/13.png">
+<p>Podemos confirmar que nuestras tablas LALR fueron creadas exitosamente en la parte inferior de nuestro editor de Gold Parser Builder.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/14.png">
+<p>Durante la creación de las tablas LALR es posible de que se detecten conflictos de desplazamiento-reducción y el asistente no nos permita continuar, en este caso debemos resolver estos conflictos y luego continuar. Por el contrario, si no tenemos conflictos que resolver, podemos continuar al último paso, crear las tablas del autómata finito determinista que será el encargado de realizar el análisis léxico. Para ello seleccionamos la opción “Project” → “Create DFA Lexer Tables”.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/15.png">
+<p>Podemos confirmar que nuestras tablas para el autómata finito determinista fueron creadas exitosamente en la parte inferior de nuestro editor de Gold Parser Builder.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/16.png">
+<p>Por último, procedemos a guardar todas las tablas, estas serán importadas posteriormente en nuestro programa para poder realizar el análisis léxico y sintáctico del texto recibido como entrada. Para ello seleccionamos la opción “Project” → “Save the Tables”.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/17.png">
+<p>Se nos mostrará una ventana para que indiquemos la ruta en la cual deseamos almacenar las tablas, la seleccionamos y damos click en aceptar, con esto habremos generado un archivo EGT, esta ventana se cerrará y Gold Parser nos mostrará un mensaje diciendo que se guardaron las tablas correctamente.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/18.png">
+<p>EGT es una extensión propia de Gold parser.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/19.png">
+<p>El archivo EGT con las tablas generado para este ejemplo está disponible en la <a href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica" target="_blank" rel="noopener">carpeta Gramática</a> del repositorio de este ejemplo.</p>
+<p>Una de las principales ventajas de Gold Parser es que tiene un módulo de test que permite visualizar el proceso de análisis de una forma detallada. Para utilizar el módulo de test, hacemos click en el ícono correspondiente, que tiene un pequeño cheque verde.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/21.png">
+<p>O bien seleccionando la opción “Window” → “Test Grammar”</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/23.png">
+<p>Esto nos desplegará una ventana de test en la que podemos ingresar en el lado izquiero una entrada y posteriormente evaluar paso a paso esta entrada con el botón verde de ejecutar que se encuentra en la parte inferior izquierda, esto nos permitirá ver el progreso del análisis en el panel derecho con el detalle de cada estado.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/22.png">
+<p>Luego de este pequeño paréntesis para explorar el módulo de test de Gold Parser continuaremos con nuestro proyecto. </p>
+<p>El siguiente paso es crear el esqueleto de un programa, para ello seleccionamos “Project” → “Create a Skeleton Program…”. </p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/24.png">
+<p>Se nos desplegarán varias opciones para generar el esqueleto, para este ejemplo en específico utilizaremos Visual Basic .NET y como motor Cock .NET DLL.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/25.png">
+<p>Seleccionaremos la opción de crear y nos mostrará una ventana desde la cual podremos seleccionar la ruta en la cual queremos guardar el esqueleto de nuestro programa. Obtendremos como resultado un archivo con extensión VB.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/26.png">
+<p>El archivo VB generado con el esqueleto está disponible en la <a href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica" target="_blank" rel="noopener">carpeta Gramática</a> del repositorio de este ejemplo.</p>
+<p>Esto es todo lo que haremos en Gold Parser, de acá en adelante utilizaremos Visual Studio.</p>
+<p>Abrimos Visual Studio.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/28.png">
+<p>Seleccionamos “File” → “New” → “Project”, una vez abierto el wizard para crear nuevos proyectos seleccionamos el apartado “Visual Basic” → “Windows Desktop” → “Console App (.NET Framework)” y le pondremos como nombre Calculadora.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/29.png">
+<p>Para poder utilizar el esqueleto que generamos en Gold Parser en el proyecto que acabamos de crear necesitaremos importar la librería .NET DLL que realiza el proceso de análisis, esta libería debe descargarse en la <a href="http://goldparser.org/engine/5/net/index.htm" target="_blank" rel="noopener">página oficial</a>. </p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/27.png">
+<p>Luego de descargar y descomprimir la librería obtendremos el archivo “Gold Engine.dll” que es el que debemos importar en nuestro proyecto.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/30.png">
+<p>Con el proyecto creado debemos de pegar el archivo de las tablas de análisis generadas en Gold Parser (Expresiones aritméticas.egt) y la librería que acabamos de descargar (GOLD Engine.dll) en la carpeta Calculadora/Calculadora/bin/debug de nuestro proyecto. </p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/31.png">
+<p>También debemos de pegar el esqueleto que generamos con Gold Parser (Expresiones aritméticas.vb) en la carpeta principal de nuestro proyecto.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/32.png">
+<p>Regresamos a Visual Studio y desde el explorador de soluciones debemos de realizar dos procedimientos. </p>
+<p>El primero es importar el archivo que contiene el esqueleto generado en Gold Parser (Expresiones aritméticas.vb), para ello hacemos click derecho sobre el nombre de nuestro proyecto “Add” → “Existing Item…”.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/33.png">
+<p>Luego seleccionamos el archivo de nuestro esqueleto.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/34.png">
+<p>Veremos que ahora aparece en el explorador de soluciones.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/35.png">
+<p>El segundo procedimiento a realizar en el explorador de soluciones es importar la librería que acabamos de pegar en nuestra carpeta debug, para hacerlo daremos click derecho en “References” → “Add Reference…”</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/36.png">
+<p>Esto nos desplegara una nueva ventana, seleccionamos la opción “Browse…” y seleccionamos nuestro archivo .dll y daremos click en aceptar.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/37.png">
+<p>Por último, abrimos el archivo que contiene el esqueleto que generamos con Gold Parser (Expresiones aritméticas.vb) y dentro de las líneas de código buscar el método con el nombre Setup. Es la única instrucción que posee este método, debemos cambiar el nombre del archivo gramar.egt por el nombre de nuestro archivo de tablas (Expresiones aritméticas.egt), es de suma importancia que hayamos pegado nuestras tablas en la carpeta debug, de otra manera nuestro programa no las podrá encontrar y nos arrojará un error en tiempo de ejecución.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/38.png">
+<p>Estas son todas las configuraciones que debemos de realizar para poder utilizar Gold Parser, de acá en adelante, el tutorial se enfoca en explicar el funcionamiento de los archivos que se generaron anteriormente.</p>
+<p><strong><em>Creando un archivo de entrada para nuestro analizador</em></strong></p>
+<p>Creamos un nuevo archivo de texto llamado entrada.txt. El contenido de este archivo es el siguiente:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Evaluar[1+1];</span><br><span class="line">Evaluar[1+1*2];</span><br><span class="line">Evaluar[-(1+1*6/3-5+7)];</span><br><span class="line">Evaluar[-(1+1*6/3-5+1*-2)];</span><br><span class="line">Evaluar[-(1.6+1.45)];</span><br></pre></td></tr></table></figure>
+<p>Este archivo de entrada será creado en la carpeta Calculadora/Calculadora/bin/debug de nuestro proyecto. </p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/39.png">
+<p><strong><em>Utilizando el esqueleto generado con Gold Parser</em></strong></p>
+<p>En los pasos anteriores nos enfocamos en la definición de la gramática y las configuraciones que tenemos que realizar para poder utilizar los archivos que generamos con Gold Parser, pero no hemos programado ningún tipo de instrucción dentro de nuestro programa. </p>
+<p>Gold Parser se centra en generar un árbol de análisis sintáctico, de esta manera nosotros podremos recorrer este árbol como sea más conveniente, es por ello que no nos permite incrustar acciones semánticas al momento de definir la gramática, debemos de realizarlo directamente en el esqueleto generado, este esqueleto será modificado según convenaga para lograr nuestro objetivo.</p>
+<p>El archivo VB generado con el esqueleto (Expresiones aritméticas.vb) modificado con las acciones necesarias para evaluar las expresiones aritméticas, además de estar en la <a href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Calculadora/Calculadora" target="_blank" rel="noopener">carpeta principal del proyecto</a> dentro del repositorio, está disponible en la <a href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica" target="_blank" rel="noopener">carpeta Gramática</a>.</p>
+<p>Podremos notar que el esqueleto generado, en su método parse, posee una serie de estados los cuales por defecto tienen comentado su funcionamiento, los estados que alteraremos en este ejemplo son: </p>
+<ul>
+<li>LexicalError : Reportar errores léxicos.</li>
+<li>SyntaxError : Reportar errores sintácticos.</li>
+<li>Accept : Crear la raíz de nuestro árbol de análisis sintáctico.</li>
+</ul>
+<p>Definiremos una variable Root de tipo Gold.Reduction que será la raíz de nuestro árbol.</p>
+<p>Adicionalmente podremos notar que el archivo también posee una función denominada CreateNewObject que posee una serie de casos los cuales tienen comentado a que producción de la gramática pertenecen, es aquí donde debemos de introducir las acciones semánticas que deseamos que se ejecuten al momento de reducir por cada producción.</p>
+<p>Esta función CreateNewObject viene definida únicamente como una plantilla, pero podremos darle la funcionalidad que nosotros deseemos. Para este ejemplo en específico se le cambió el nombre por “GetValue” ya que lo que necesitamos al final es obtener el valor resultante de evaluar cada expresión aritmética.</p>
+<p>Los métodos de nuestro parser son estáticos y no es necesario crear una instancia parser, pero si es necesario ejecutar el método Setup para que cargue las tablas de análisis.</p>
+<p>El programa por defecto está configurado para leer el archivo entrada.txt en la carpeta Calculadora/Calculadora/bin/debug del proyecto.</p>
+<p>A continuación se muestra el resultado de ejecutar el archivo de entrada que preparamos anteriormente.</p>
+<img src="/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/40.png">
+<p>Como podemos ver, obtenemos la salida esperada.</p>
+<p><strong><em>Acerca del autor:</em></strong></p>
+<p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a href="https://github.com/luisferliza" target="_blank" rel="noopener">Luis Lizama</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<p><strong><em>Fuentes consultadas:</em></strong></p>
+<p>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Compilers/">Compilers</a>, <a class="has-link-grey -link" href="/tags/Visual-Basic/">Visual Basic</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Mi primer proyecto utilizando Irony</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/21/17-Mi-primer-proyecto-utilizando-Jison-Linux/">
+                <span class="level-item">Mi primer proyecto utilizando Jison (Linux)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.jpg" alt="Erick Navarro">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Erick Navarro
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Data Engineering Manager
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Guatemala City</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        26
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ericknavarro" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ericknavarro">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Linkedin" href="https://www.linkedin.com/in/ericknd">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/AWS/">
+            <span class="level-start">
+                <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/AWS/Alexa-Skills/">
+            <span class="level-start">
+                <span class="level-item">Alexa Skills</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/CloudFront/">
+            <span class="level-start">
+                <span class="level-item">CloudFront</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/EC2/">
+            <span class="level-start">
+                <span class="level-item">EC2</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/Lambda/">
+            <span class="level-start">
+                <span class="level-item">Lambda</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/Route-53/">
+            <span class="level-start">
+                <span class="level-item">Route 53</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/S3/">
+            <span class="level-start">
+                <span class="level-item">S3</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/">
+            <span class="level-start">
+                <span class="level-item">Computer Science</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">18</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/Compilers/">
+            <span class="level-start">
+                <span class="level-item">Compilers</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/Data-Structures/">
+            <span class="level-start">
+                <span class="level-item">Data Structures</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Programming/">
+            <span class="level-start">
+                <span class="level-item">Programming</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Programming/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Alexa-Skills/" style="font-size: 10px;">Alexa Skills</a> <a href="/tags/C/" style="font-size: 14px;">C#</a> <a href="/tags/CloudFront/" style="font-size: 12px;">CloudFront</a> <a href="/tags/Compilers/" style="font-size: 20px;">Compilers</a> <a href="/tags/Data-Structures/" style="font-size: 12px;">Data Structures</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/Python/" style="font-size: 12px;">Python</a> <a href="/tags/Route-53/" style="font-size: 10px;">Route 53</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/Visual-Basic/" style="font-size: 16px;">Visual Basic</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T01:09:28.000Z">2020-03-15</time></div>
+                    <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:17:25.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:14:34.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/22.png" alt="Intérprete sencillo utilizando Irony y C#">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-07T21:01:14.000Z">2019-08-07</time></div>
+                    <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando Irony y C#</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa-Skills/">
+                        <span class="tag">Alexa Skills</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C#</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Compilers/">
+                        <span class="tag">Compilers</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-Structures/">
+                        <span class="tag">Data Structures</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EC2/">
+                        <span class="tag">EC2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Lambda/">
+                        <span class="tag">Lambda</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Route-53/">
+                        <span class="tag">Route 53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Visual-Basic/">
+                        <span class="tag">Visual Basic</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T01:09:28.000Z">2020-03-15</time></div>
+                    <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:17:25.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:14:34.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/22.png" alt="Intérprete sencillo utilizando Irony y C#">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-07T21:01:14.000Z">2019-08-07</time></div>
+                    <a href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando Irony y C#</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa-Skills/">
+                        <span class="tag">Alexa Skills</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C#</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Compilers/">
+                        <span class="tag">Compilers</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-Structures/">
+                        <span class="tag">Data Structures</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EC2/">
+                        <span class="tag">EC2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Lambda/">
+                        <span class="tag">Lambda</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Route-53/">
+                        <span class="tag">Route 53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Visual-Basic/">
+                        <span class="tag">Visual Basic</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Mi primer proyecto utilizando Gold Parser" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Luis Lizama&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
