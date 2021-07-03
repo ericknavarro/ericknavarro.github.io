@@ -1,0 +1,9 @@
+version: 0.2
+phases:
+ build:
+   commands:
+     - aws s3 sync --delete . "s3://ericknavarro.io"
+     - aws cloudfront create-invalidation --distribution-id E16UR766CKXDTP --paths '/*'
+ post_build:
+   commands:
+     - echo "Deployed successfully!!"

@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Intérprete sencillo utilizando JavaCC - Erick Navarro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="De no estar familiarizado con la herramienta JavaCC, se recomienda al lector seguir el siguiente tutorial:  Mi primer proyecto utilizando JavaCC   El desarrollo con JavaCC resulta sencillo, pero la le">
+<meta name="keywords" content="Compilers,C#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intérprete sencillo utilizando JavaCC">
+<meta property="og:url" content="http://yoursite.com/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/index.html">
+<meta property="og:site_name" content="Erick Navarro">
+<meta property="og:description" content="De no estar familiarizado con la herramienta JavaCC, se recomienda al lector seguir el siguiente tutorial:  Mi primer proyecto utilizando JavaCC   El desarrollo con JavaCC resulta sencillo, pero la le">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/thumbnails/25.png">
+<meta property="og:updated_time" content="2021-07-03T00:58:55.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Intérprete sencillo utilizando JavaCC">
+<meta name="twitter:description" content="De no estar familiarizado con la herramienta JavaCC, se recomienda al lector seguir el siguiente tutorial:  Mi primer proyecto utilizando JavaCC   El desarrollo con JavaCC resulta sencillo, pero la le">
+<meta name="twitter:image" content="http://yoursite.com/images/thumbnails/25.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145306707-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-145306707-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Intérprete sencillo utilizando JavaCC" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow on GitHub" href="https://github.com/ericknavarro">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    18 minutes read (About 2674 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Intérprete sencillo utilizando JavaCC
+            
+        </h1>
+        <div class="content">
+            <p>De no estar familiarizado con la herramienta JavaCC, se recomienda al lector seguir el siguiente tutorial:</p>
+<ul>
+<li><a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" title="Mi primer proyecto utilizando JavaCC">Mi primer proyecto utilizando JavaCC</a>
+</li>
+</ul>
+<p>El desarrollo con JavaCC resulta sencillo, pero la legibilidad de la gramática puede llegar a ser un inconveniente si no se trata con la atención debida, sin embargo, el resto de las funcionalidades que nos ofrece JavaCC son un buen aliciente para utilizarlo, por lo tanto en esta ocasión vamos a desarrollar un intérprete, este contendrá la ejecución de sentencias básicas, como declaraciones de variables, asignaciones, sentencias de control, funciones y demás. El proyecto completo del ejemplo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC" target="_blank" rel="noopener">Intérprete sencillo utilizando JavaCC</a></li>
+</ul>
+<p><strong><em> Conceptos básicos </em></strong></p>
+<ul>
+<li><strong>Intérprete</strong>: Es un tipo común de procesador de lenguaje. En vez de producir un programa destino como una traducción, el intérprete ejecuta directamente las operaciones especificadas en el programa de origen (fuente) con las entradas proporcionadas por el usuario.</li>
+<li><strong>Árbol de sintaxis abstracta (AST)</strong>: es una representación simplificada de la estructura sintáctica del código fuente. A nivel de programación un AST es una estructura de datos que se genera durante el proceso de análisis sintáctico.</li>
+</ul>
+<p><strong><em>Lenguaje de entrada</em></strong></p>
+<p>En la raíz del proyecto hay un archivo llamado <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/entrada.txt" target="_blank" rel="noopener">entrada.txt</a>, este contiene un ejemplo con las instrucciones que el lenguaje soporta.</p>
+<p><strong><em>Listado instrucciones soportadas</em></strong></p>
+<ul>
+<li>Declaración de variables</li>
+<li>Asignación de variables</li>
+<li>Evaluación de expresiones aritméticas, lógicas y relaciones</li>
+<li>If…elseif…else</li>
+<li>While</li>
+<li>Continue</li>
+<li>Break</li>
+<li>Return</li>
+<li>Declaración de funciones</li>
+<li>Llamadas a funciones</li>
+<li>Recursividad</li>
+<li>Funciones nativas: pie, toUpper. Pie genera una gráfica pie, y toUpper convierte a mayúsculas cierta cadena.</li>
+<li>Comentarios de una línea y multilínea</li>
+<li>Control de excepciones semánticas</li>
+</ul>
+<p><strong><em>Estructura del archivo <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Analizador/Gramatica.jj" target="_blank" rel="noopener">Gramatica.jj</a> de JavaCC</em></strong></p>
+<p>La extensión para los archivos JavaCC es .jj, a continuación vamos a describir la estructura del <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Analizador/Gramatica.jj" target="_blank" rel="noopener">archivo de JavaCC utilizado para este ejemplo</a>.</p>
+<p><strong>Sección de opciones</strong><br>Aquí vamos a indicar que no haga distinción entre mayúsculas y minúsculas, además de indicar que los métodos de nuestro archivo luego de compilados <strong>no sean estáticos</strong>.</p>
+<p><strong>Sección de parserBegin y parserEnd</strong><br>Aquí vamos a definir el nombre de nuestro paquete, adicionalmente y muy importante todos los import de archivos que vayamos a utilizar en las acciones para generar nuestro AST. Por último vamos a crear una clase vacía, esta es la que vamos a utilizar para invocar a nuestra gramática.</p>
+<p><strong>Sección de análisis léxico</strong><br>En este punto vamos a definir todos los tokens que vamos a utilizar en el lenguaje:</p>
+<ul>
+<li><em>Sección skip</em><br>Contendrá todos los tokens que javacc va a ignorar cuando los reconozca, por ejemplo los comentarios o saltos de línea, espacios en blanco, etc.</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SKIP : &#123;</span><br><span class="line">      <span class="hljs-string">" "</span></span><br><span class="line">    | <span class="hljs-string">"\t"</span></span><br><span class="line">    | <span class="hljs-string">"\r"</span></span><br><span class="line">    | <span class="hljs-string">"\n"</span></span><br><span class="line">    | &lt;<span class="hljs-string">"//"</span> (~[<span class="hljs-string">"\n"</span>, <span class="hljs-string">"\r"</span>])*&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>Sección de token</em><br>En esta sección cada vez que se reconozca un lexema este generará un nuevo objeto de tipo token.</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TOKEN : &#123;</span><br><span class="line">      &lt;NUMERO: ([<span class="hljs-string">"0"</span>-<span class="hljs-string">"9"</span>])+&gt;</span><br><span class="line">    | &lt;DECIMAL: ([<span class="hljs-string">"0"</span>-<span class="hljs-string">"9"</span>])+<span class="hljs-string">"."</span>([<span class="hljs-string">"0"</span>-<span class="hljs-string">"9"</span>])+&gt;</span><br><span class="line">    | &lt;ENTERO: <span class="hljs-string">"Numero"</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>Sección more</em><br>Sección utilizada para la creación de estados.</li>
+</ul>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MORE :</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-string">"\""</span> :STRING_STATE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;STRING_STATE&gt; MORE:</span><br><span class="line">&#123;</span><br><span class="line">    &lt;~[<span class="hljs-string">"\""</span>]&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>Sección de análisis sintáctico</em></strong><br>Aquí vamos a definir la gramática y agregar las acciones correspondientes para generar nuestro AST. Ciertas producciones van a generar una clase que tiene cierta funcionalidad donde se indica lo que la ejecución deberá hacer. </p>
+<p><em>Veamos el caso del while</em></p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/** While -&gt; <span class="hljs-keyword">while</span>(condicion) instrucciones */</span><br><span class="line">AST Mientras() :</span><br><span class="line">&#123;AST e; ArrayList&lt;AST&gt; ins;&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &lt;MIENTRAS&gt; &lt;PARENI&gt; e=Expresion() &lt;PAREND&gt; ins=Bloque() </span><br><span class="line">    &#123;<span class="hljs-built_in">return</span> new Mientras(e, ins, token.beginLine, token.beginColumn);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Con esta gramática observamos lo siguiente, tenemos dos variables:</p>
+<ul>
+<li>AST e</li>
+<li>ArrayList<ast> ins</ast></li>
+</ul>
+<p>AST es nuestra clase abstracta asociada con la variable e que contendrá la condición de nuestro while, y el arraylist contendrá una lista de estas clases, esto con el fin de tener una lista de instrucciones.<br>Como sabemos un while necesita de una condición y una lista de instrucciones, lo cual se cumple en el diseño planteado, por lo tanto vamos a retornar una instancia de la clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java" target="_blank" rel="noopener">Mientras</a>.</p>
+<p>Luego de retornar nuestra clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java" target="_blank" rel="noopener">Mientras</a>, el analizador se encarga de continuar la reducción nuestras producciones, y agregar esta clase a una lista de instrucciones ya que la clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java" target="_blank" rel="noopener">Mientras</a> es una instrucción en sí misma.<br>Al finalizar el análisis de la entrada se debería generar un árbol, que básicamente contiene una lista de instrucciones, y estas instrucciones pueden ser mientras, imprimir, llamadas, etc.<br>Esta es la idea general detrás de las acciones del análisis sintáctico, retornar clases que van a formar un AST, que nos servirá para el análisis semántico y para la ejecución de nuestras instrucciones.</p>
+<p><strong><em>Análisis semántico y ejecución de código</em></strong></p>
+<p>Aquí nos vamos a encargar de verificar que lo que ejecutemos tenga sentido, vamos a retomar el ejemplo de la clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java" target="_blank" rel="noopener">Mientras</a>, específicamente la sobre-escritura del método interpretar:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public Object interpretar(Tabla tabla, Arbol tree) &#123;</span><br><span class="line">    Object valorCondicion = <span class="hljs-literal">false</span>;</span><br><span class="line">    <span class="hljs-keyword">do</span> &#123;</span><br><span class="line">        Tabla t = new Tabla(tabla);</span><br><span class="line">        valorCondicion = condicion.interpretar(t, tree);</span><br><span class="line">        <span class="hljs-keyword">if</span> (valorCondicion instanceof Excepcion) &#123;</span><br><span class="line">            <span class="hljs-built_in">return</span> valorCondicion;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (!(valorCondicion instanceof Boolean)) &#123;</span><br><span class="line">            Excepcion ex = new Excepcion(<span class="hljs-string">"Semantico"</span>, <span class="hljs-string">"Se esperaba un valor booleano para la condicion"</span>, fila, columna);</span><br><span class="line">            tree.getExcepciones().add(ex);</span><br><span class="line">            <span class="hljs-built_in">return</span> ex;</span><br><span class="line">        &#125;</span><br><span class="line">        Object result = null;</span><br><span class="line">        <span class="hljs-keyword">if</span> ((Boolean) valorCondicion) &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span> (AST m : instrucciones) &#123;</span><br><span class="line">                result = m.interpretar(t, tree);</span><br><span class="line">                <span class="hljs-keyword">if</span> (result instanceof Retorno || result instanceof Excepcion) &#123;</span><br><span class="line">                    <span class="hljs-built_in">return</span> result;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-keyword">if</span>(result instanceof Detener)&#123;</span><br><span class="line">                    <span class="hljs-built_in">return</span> null;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-keyword">if</span>(result instanceof Continue)&#123;</span><br><span class="line">                    <span class="hljs-built_in">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="hljs-keyword">while</span> ((Boolean) valorCondicion);</span><br><span class="line">    <span class="hljs-built_in">return</span> null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Se sobre-escribe la función interpretar que viene desde nuestra clase abstracta <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java" target="_blank" rel="noopener">AST</a>, cada clase que herede de <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java" target="_blank" rel="noopener">AST</a> le dará un distinto comportamiento a este método en base a lo que se quiere realizar.</p>
+<p>En este caso necesitamos darle el comportamiento de un while, haciendo lo siguiente:</p>
+<ul>
+<li>Declaramos una variable que almacenara nuestra condición</li>
+<li>Iniciamos un ciclo doWhile con la condición establecida en la variable creada anteriormente</li>
+<li>En las instrucciones del do, crearemos un nuevo ámbito para nuestro mientras</li>
+<li>Obtenemos el valor de la condición y lo asignamos a la variable creada al inicio</li>
+<li>Si el valor obtenido es una excepción vamos a retornar este valor para que sea reportado.</li>
+<li>Si continua la ejecución vamos ahora a verificar que el valor obtenido sea de tipo booleano, sino fuera un booleano vamos a generar una nueva excepción y la vamos a retornar para que sea reportada.</li>
+<li>Si la condición fuera valida vamos a tener un if con esta condición y si el valor fuera true inicia la ejecución de cada instrucción en nuestra lista</li>
+<li>Si fuera false, simplemente ignora el if y nuestro doWhile termina</li>
+<li>Dentro del for para recorrer las instrucciones nos encontramos que en cada iteración debemos verificar que lo que obtenemos de valor no sea una excepción ya que si lo fuera la debemos retornar para que sea reportada.</li>
+<li>Además verificamos si fuera un break, continue o return para saber que hacer en cada caso.</li>
+<li>Por ejemplo si fuera retorno vamos a devolver el valor como tal, si fuera un continue únicamente tenemos que ir a la siguiente iteración por lo que cortamos la iteración del ciclo interno donde estamos para que no se sigan ejecutando el resto de las instrucciones y si fuera un break debemos terminar la ejecución del mientras por lo tanto terminamos la ejecución de nuestro doWhile.<br>Esta sería la lógica para un ciclo while, y así lo haremos con todas las instrucciones, cada una tendrá una implementación distinta.</li>
+</ul>
+<p><strong><em> Clases importantes del proyecto </em></strong><br>Estas clases son clave para el desarrollo de nuestro intérprete y se explicarán a continuación</p>
+<ul>
+<li><em><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java" target="_blank" rel="noopener">Clase abstracta AST</a></em><br>Contiene los atributos y métodos que tendrán las instrucciones en común, además el método interpretar que será sobre-escrito en cada implementación, la finalidad de esta clase es poder modelar clases de distintos tipos que comparten un comportamiento cómun que en este caso sería que se pueden interpretar.</li>
+<li><em><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Simbolo.java" target="_blank" rel="noopener">Clase símbolo</a></em><br>Esta clase nos sirve como nodo para crear nuestras variables, vemos que contiene tipo, identificador y valor, aunque esto puede variar dependiendo del tipo de interprete que estemos construyendo.</li>
+<li><em><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Tabla.java" target="_blank" rel="noopener">Clase tabla</a></em><br>Esta a tener la función de tabla de símbolos, aquí vamos a almacenar nuestras variables y funciones, nuestras variables las vamos a almacenar en un hashmap y las funciones en un arraylist. Contamos con métodos que nos ayudaran a obtener, guardar variables, obtener y guardar funciones.</li>
+<li><em><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Arbol.java" target="_blank" rel="noopener">Clase árbol</a></em><br>Es la clase que nos devuelve el análisis sintáctico contiene las instrucciones que deberán ser ejecutadas, la lista de excepción que vamos a reportar y la tabla global para cuando ejecutemos las llamadas a funciones.</li>
+<li><em><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Tipo.java" target="_blank" rel="noopener">Clase tipo</a></em><br>Aquí es donde vamos a definir los tipos que contendrá nuestro interprete.</li>
+<li><em><a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Expresiones/Funcion.java" target="_blank" rel="noopener">Clase función</a></em><br>Como cualquier otra instrucción, extiende de la clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java" target="_blank" rel="noopener">AST</a>, y recibe una lista de parámetros y el nombre de la función y una lista de instrucciones.<br>Y para la ejecución únicamente necesitamos recorrer la lista de instrucciones ejecutando el método interpretar asociado a cada una de estas.</li>
+</ul>
+<p><strong><em>Creación de funciones nativas</em></strong></p>
+<p>Para funciones nativas es muy sencillo, únicamente debemos extender de la clase función y modificar el comportamiento por cualquier otro que deseemos. Tomamos de ejemplo la función nativa <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Nativas/aMayuscula.java" target="_blank" rel="noopener">aMayuscula</a>, esta recibe en su constructor los mismos datos que la funciones y únicamente se va a diferenciar en el método interpretar donde le daremos una lógica distinta.</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public Object interpretar(Tabla tabla, Arbol tree) &#123;</span><br><span class="line">    Simbolo simbolo = tabla.getVariable(<span class="hljs-string">"toUpper%%parametro1"</span>);</span><br><span class="line">    <span class="hljs-keyword">if</span> (simbolo == null) &#123;</span><br><span class="line">        Excepcion ex = new Excepcion(<span class="hljs-string">"Semantico"</span>, <span class="hljs-string">"No se ha encontrado la variable "</span> + this.nombre + <span class="hljs-string">"."</span>, fila, columna);</span><br><span class="line">        tree.getExcepciones().add(ex);</span><br><span class="line">        <span class="hljs-built_in">return</span> ex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">if</span> (!simbolo.getTipo().equals(new Tipo(Tipo.Tipos.CADENA))) &#123;</span><br><span class="line">        Excepcion ex = new Excepcion(<span class="hljs-string">"Semantico"</span>, <span class="hljs-string">"El tipo de los parametros no coinciden."</span>, fila, columna);</span><br><span class="line">        tree.getExcepciones().add(ex);</span><br><span class="line">        <span class="hljs-built_in">return</span> ex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">return</span> (simbolo.getValor() + <span class="hljs-string">""</span>).toUpperCase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>Ejecución de la entrada</em></strong><br>Para ejecutar la entrada debemos instanciar nuestra gramática, esto sucede en la clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/interpretejavacc/UIController.java" target="_blank" rel="noopener">UIController</a>, específicamente dentro del método Ejecutar:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Gramatica parser = new Gramatica(new BufferedReader(new StringReader(entrada.getText())));</span><br><span class="line">Arbol arbol = parser.Analizar();</span><br><span class="line">EjecutarInstrucciones(arbol);</span><br></pre></td></tr></table></figure>
+<p>Como mencionamos el resultado de ejecutar nuestra gramática nos devolverá un objeto de tipo <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Arbol.java" target="_blank" rel="noopener">Arbol</a>, lo enviamos a un método para tratarlo.<br>En este método pasamos la consola de la interfaz a nuestro árbol para imprimir cosas, crear la tabla global y asignarla a nuestro árbol, crear las funciones nativas.<br>Luego recorremos por primera vez nuestras instrucciones en búsqueda de funciones para declararlas, pero solamente funciones no otra instrucción.<br>Luego recorremos por segunda vez nuestras instrucciones y las ejecutamos utilizando el siempre confiable método interpretar obtenido gracias a nuestra clase abstracta AST. Específicamente con el método EjecutarInstrucciones, de la clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/interpretejavacc/UIController.java" target="_blank" rel="noopener">UIController</a>:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">private void EjecutarInstrucciones(Arbol tree) &#123;</span><br><span class="line">    tree.setConsola(consola);</span><br><span class="line">    tree.setGrupo(groupChart);</span><br><span class="line">    Tabla tabla = new Tabla(null);</span><br><span class="line">    tree.setGlobal(tabla);</span><br><span class="line">    crearNativas(tabla);</span><br><span class="line">    // Recorrido 1 para insertar funciones</span><br><span class="line">    tree.getInstrucciones().forEach(m -&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (m instanceof Funcion) &#123;</span><br><span class="line">            tabla.setFuncion((Funcion) m);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    tree.getInstrucciones().forEach(m -&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (!(m instanceof Funcion)) &#123;</span><br><span class="line">            Object result = m.interpretar(tabla, tree);</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> (result instanceof Excepcion) &#123;</span><br><span class="line">                ((Excepcion) result).imprimir(tree.getConsola());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-keyword">if</span> (result instanceof Detener) &#123;</span><br><span class="line">                Excepcion ex = new Excepcion(<span class="hljs-string">"Semantico"</span>, <span class="hljs-string">"Sentencia break fuera de ciclo."</span>, m.fila, m.columna);</span><br><span class="line">                tree.getExcepciones().add(ex);</span><br><span class="line">                ex.imprimir(tree.getConsola());</span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (result instanceof Retorno) &#123;</span><br><span class="line">                Excepcion ex = new Excepcion(<span class="hljs-string">"Semantico"</span>, <span class="hljs-string">"Sentencia retorno fuera de funcion."</span>, m.fila, m.columna);</span><br><span class="line">                tree.getExcepciones().add(ex);</span><br><span class="line">                ex.imprimir(tree.getConsola());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    tree.getExcepciones().forEach(m -&gt; &#123;</span><br><span class="line">        System.out.println(<span class="hljs-string">""</span> + m.toString());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>Iniciando funciones nativas</em></strong><br>Para las funciones nativas recordemos deben ser creadas antes de iniciar la ejecución de nuestro interprete. Esta creación de las funciones nativas se encuentra en clase <a href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/interpretejavacc/UIController.java" target="_blank" rel="noopener">UIController</a>, específicamente en el método crearNativas:</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void crearNativas(Tabla t)&#123;</span><br><span class="line">    Tipo tipo = new Tipo(Tipo.Tipos.CADENA);</span><br><span class="line">    String nombre = <span class="hljs-string">"toUpper"</span>;</span><br><span class="line">    ArrayList&lt;AST&gt; parametros = new ArrayList&lt;&gt;();</span><br><span class="line">    parametros.add(new Declaracion(tipo, <span class="hljs-string">"toUpper%%parametro1"</span>, null, -1, -1));</span><br><span class="line">    ArrayList&lt;AST&gt; instrucciones = new ArrayList&lt;&gt;();</span><br><span class="line">    aMayuscula am = new aMayuscula(tipo, nombre, parametros, instrucciones, -1, -1);</span><br><span class="line">    t.setFuncion(am);</span><br><span class="line">    </span><br><span class="line">    tipo = new Tipo(Tipo.Tipos.CADENA);</span><br><span class="line">    nombre = <span class="hljs-string">"pie"</span>;</span><br><span class="line">    parametros = new ArrayList&lt;&gt;();</span><br><span class="line">    parametros.add(new Declaracion(new Tipo(Tipos.LISTA), <span class="hljs-string">"pie%%parametro1"</span>, null, -1, -1));</span><br><span class="line">    parametros.add(new Declaracion(new Tipo(Tipos.LISTA), <span class="hljs-string">"pie%%parametro2"</span>, null, -1, -1));</span><br><span class="line">    parametros.add(new Declaracion(new Tipo(Tipos.CADENA), <span class="hljs-string">"pie%%parametro3"</span>, null, -1, -1));</span><br><span class="line">    instrucciones = new ArrayList&lt;&gt;();</span><br><span class="line">    pieChart pc = new pieChart(tipo, nombre, parametros, instrucciones, -1, -1);</span><br><span class="line">    t.setFuncion(pc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Como observamos aquí creamos las funciones nativas de toUpper y pie que mencionamos al inicio. Además los parámetros tienen un nombre especial para que no se confundan con otras variables, al terminar de crearlas las agregamos a nuestra lista de funciones.</p>
+<p>Una vez explicado esto procedemos a ejecutar nuestro programa, vemos que contamos con un boton para ejecutar y 2 pestañas, 1 de consola y la otra donde se muestran nuestras graficas:</p>
+<img src="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/01.png">
+<p>Agregamos y ejecutamos la entrada proporcionada que produce lo siguiente en la sección de la consola:</p>
+<img src="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/02.png">
+<p>Y en la sección de grafica:</p>
+<img src="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/03.png">
+<p>Con esto damos por finalizado la explicación de este pequeño proyecto.</p>
+<p><strong><em>Conclusiones</em></strong></p>
+<ul>
+<li>Como pudimos observar el desarrollo de un interprete es largo, pero a su vez es ordenado.</li>
+<li>Las gramáticas en javaCC pueden ser poco legibles pero altamente sencillas de crear.</li>
+<li><strong>Dry, don’t repeat yourself</strong>: si usamos esta filosofía podemos reducir la cantidad de código hecho, por ejemplo en nuestra clase abstracta agregamos código común para todas las clases que la heredan, o con las funciones nativas únicamente heredamos de algo que ya existía, hay que tratar en la manera de lo posible reutilizar el código existente. </li>
+<li>Algo que no se explico porque no era parte del tutorial, pero que es muy útil fue que la interfaz esta hecha en JavaFX, esta nos proporciona una manera más sencilla de utilizar los componentes de la interfaz con nuestra lógica utilizando el modelo MVC.</li>
+<li>La utilización de estados en JavaCC nos puede ayudar en casos donde necesitemos crear tokens más complejos.</li>
+</ul>
+<p><strong><em>Acerca del autor:</em></strong></p>
+<p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a href="https://github.com/PvasquezF" target="_blank" rel="noopener">Pavel Vásquez</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<p><strong><em>Fuentes consultadas:</em></strong></p>
+<ul>
+<li>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/C/">C#</a>, <a class="has-link-grey -link" href="/tags/Compilers/">Compilers</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Intérprete sencillo utilizando PLY con Python 3</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/">
+                <span class="level-item">Mi primer proyecto utilizando PLY con Python 3</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.jpg" alt="Erick Navarro">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Erick Navarro
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Data Engineering Manager
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Guatemala City</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        27
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ericknavarro" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ericknavarro">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Linkedin" href="https://www.linkedin.com/in/ericknd">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/AWS/">
+            <span class="level-start">
+                <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/AWS/Alexa-Skills/">
+            <span class="level-start">
+                <span class="level-item">Alexa Skills</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/CloudFront/">
+            <span class="level-start">
+                <span class="level-item">CloudFront</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/EC2/">
+            <span class="level-start">
+                <span class="level-item">EC2</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/Lambda/">
+            <span class="level-start">
+                <span class="level-item">Lambda</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/Route-53/">
+            <span class="level-start">
+                <span class="level-item">Route 53</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/AWS/S3/">
+            <span class="level-start">
+                <span class="level-item">S3</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/">
+            <span class="level-start">
+                <span class="level-item">Computer Science</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">19</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/Compilers/">
+            <span class="level-start">
+                <span class="level-item">Compilers</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">17</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Computer-Science/Data-Structures/">
+            <span class="level-start">
+                <span class="level-item">Data Structures</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Programming/">
+            <span class="level-start">
+                <span class="level-item">Programming</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Programming/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Alexa-Skills/" style="font-size: 10px;">Alexa Skills</a> <a href="/tags/C/" style="font-size: 14px;">C#</a> <a href="/tags/CloudFront/" style="font-size: 12px;">CloudFront</a> <a href="/tags/Compilers/" style="font-size: 20px;">Compilers</a> <a href="/tags/Data-Structures/" style="font-size: 12px;">Data Structures</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/Route-53/" style="font-size: 10px;">Route 53</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/Visual-Basic/" style="font-size: 16px;">Visual Basic</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/27.png" alt="Mi primer proyecto utilizando Yacc y Lex">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-01T21:03:28.000Z">2020-10-01</time></div>
+                    <a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando Yacc y Lex</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T01:09:28.000Z">2020-03-15</time></div>
+                    <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:17:25.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:14:34.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa-Skills/">
+                        <span class="tag">Alexa Skills</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C#</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Compilers/">
+                        <span class="tag">Compilers</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-Structures/">
+                        <span class="tag">Data Structures</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EC2/">
+                        <span class="tag">EC2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Lambda/">
+                        <span class="tag">Lambda</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Route-53/">
+                        <span class="tag">Route 53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Visual-Basic/">
+                        <span class="tag">Visual Basic</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/27.png" alt="Mi primer proyecto utilizando Yacc y Lex">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-10-01T21:03:28.000Z">2020-10-01</time></div>
+                    <a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando Yacc y Lex</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T01:09:28.000Z">2020-03-15</time></div>
+                    <a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T19:53:33.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/" class="has-link-black-ter is-size-6">Intérprete sencillo utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:17:25.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando PLY con Python 3</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T22:14:34.000Z">2020-02-10</time></div>
+                    <a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" class="has-link-black-ter is-size-6">Mi primer proyecto utilizando JavaCC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Computer-Science/">Computer Science</a> / <a class="has-link-grey -link" href="/categories/Computer-Science/Compilers/">Compilers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa-Skills/">
+                        <span class="tag">Alexa Skills</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C#</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Compilers/">
+                        <span class="tag">Compilers</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-Structures/">
+                        <span class="tag">Data Structures</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EC2/">
+                        <span class="tag">EC2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Lambda/">
+                        <span class="tag">Lambda</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Route-53/">
+                        <span class="tag">Route 53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Visual-Basic/">
+                        <span class="tag">Visual Basic</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Intérprete sencillo utilizando JavaCC" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Pavel Vásquez&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
