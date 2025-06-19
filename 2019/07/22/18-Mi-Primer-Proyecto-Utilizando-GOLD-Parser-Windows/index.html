@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Mi primer proyecto utilizando Gold Parser - Erick Navarro</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Erick Navarro"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Erick Navarro"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Gold Parser B"><meta property="og:type" content="blog"><meta property="og:title" content="Mi primer proyecto utilizando Gold Parser"><meta property="og:url" content="https://ericknavarro.github.io/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/"><meta property="og:site_name" content="Erick Navarro"><meta property="og:description" content="Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Gold Parser B"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://ericknavarro.github.io/gallery/thumbnails/18.png"><meta property="article:published_time" content="2019-07-22T17:40:13.000Z"><meta property="article:modified_time" content="2025-06-19T02:56:32.562Z"><meta property="article:author" content="Erick Navarro"><meta property="article:tag" content="Compilers"><meta property="article:tag" content="Visual Basic"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://ericknavarro.github.io/gallery/thumbnails/18.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://ericknavarro.github.io/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/"},"headline":"Mi primer proyecto utilizando Gold Parser","image":["https://ericknavarro.github.io/gallery/thumbnails/18.png"],"datePublished":"2019-07-22T17:40:13.000Z","dateModified":"2025-06-19T02:56:32.562Z","author":{"@type":"Person","name":"Erick Navarro"},"publisher":{"@type":"Organization","name":"Erick Navarro","logo":{"@type":"ImageObject","url":"https://ericknavarro.github.io/img/logo.svg"}},"description":"Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas. Las tecnologías a utilizar son:  Gold Parser B"}</script><link rel="canonical" href="https://ericknavarro.github.io/2019/07/22/18-Mi-Primer-Proyecto-Utilizando-GOLD-Parser-Windows/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-145306707-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-145306707-1');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Erick Navarro" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Connect on LinkedIn" href="https://www.linkedin.com/in/ericknd/"><i class="fab fa-linkedin"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-07-22T17:40:13.000Z" title="7/22/2019, 11:40:13 AM">2019-07-22</time></span><span class="level-item"> Erick Navarro </span><span class="level-item"><a class="link-muted" href="/categories/Computer-Science/">Computer Science</a><span> / </span><a class="link-muted" href="/categories/Computer-Science/Compilers/">Compilers</a></span></div></div><h1 class="title is-3 is-size-4-mobile">Mi primer proyecto utilizando Gold Parser</h1><div class="content"><p>Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas.</p>
+<p>Las tecnologías a utilizar son:</p>
+<ul>
+<li><strong>Gold Parser Builder</strong>: Generador de analizadores léxicos y sintácticos diseñado para funcionar en múltiples lenguajes de programación.</li>
+<li><strong>Visual Studio 2017</strong>: Entorno de desarrollo integrado para programar Visual Basic y C#, entre otros.</li>
+<li><strong>Windows 10</strong>: Sistema operativo</li>
+</ul>
+<p>El proyecto completo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoGoldParserVB">Mi primer proyecto utilizando Gold Parser</a></li>
+</ul>
+<h3 id="Gold-Parser"><a href="#Gold-Parser" class="headerlink" title="Gold Parser"></a><strong>Gold Parser</strong></h3><p><a target="_blank" rel="noopener" href="http://www.goldparser.org/">Gold Parser</a> es un generador de analizadores léxicos y sintácticos que soporta lenguajes tales como C#, COBOL, DELPHI, Visual Basic, Java entre otros. Este programa realiza de manera conjunta el análisis léxico y sintáctico, por lo que no tenemos la necesidad de recurrir a ningún programa externo.</p>
+<p>La principal tarea de un analizador léxico es leer los caracteres de entrada del programa fuente, agruparlos en lexemas y producir como salida una secuencia de tokens.</p>
+<ul>
+<li><p>Un <em>token</em> es un par que consiste en un nombre de token y un valor de atributo opcional.</p>
+</li>
+<li><p>Un <em>lexema</em> es una secuencia de caracteres en el programa fuente, que coinciden con el patrón para un token y que el analizador léxico identifica como una instancia de este tóken.</p>
+</li>
+<li><p>Un <em>patrón</em> es una descripción de la forma que pueden tomar los lexemas de un token.</p>
+</li>
+</ul>
+<p>El analizador sintáctico obtiene una cadena de tokens del analizador léxico y verifica que dicha cadena pueda generarse con la gramática para el lenguaje fuente. Una gramática proporciona una especificación precisa y fácil de entender de un lenguaje de programación.</p>
+<h3 id="Pre-requisitos"><a href="#Pre-requisitos" class="headerlink" title="Pre-requisitos"></a><strong>Pre-requisitos</strong></h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.goldparser.org/builder/index.htm">Gold Parser Builder</a></li>
+</ul>
+<p>Este programa puede descargarse de la <a target="_blank" rel="noopener" href="http://www.goldparser.org/builder/index.htm">página oficial de Gold Parser</a></p>
+
+
+<p>Descomprimimos el archivo ZIP descargado y ejecutamos el archivo setup.exe que encontraremos dentro de los files descomprimidos.</p>
+
+<p>Esto nos desplegará el asistente de instalación, en la primera ventana no debemos de seleccionar nada, por lo que únicamente presionaremos el botón de siguiente.</p>
+
+<p>Posteriormente, se nos preguntará en qué ruta deseamos instalar Gold Parser, en este caso dejaremos la ruta por defecto que es “C:\Program Files (x86)\Gold Parser Builder”, seleccionar si queremos instalarlo para todos los usuarios o solo para nosotros, en este caso seleccionaremos “Everyone” para que todos los usuarios puedan utilizarlo. Damos click en siguiente para continuar con la instalación.</p>
+
+
+<p>Luego se nos mostrará una ventana que pide nuestra confirmación para continuar con la instalación de Gold Parser, hacemos click en siguiente.</p>
+
+
+<p>Por último se nos mostrará la ventana de confirmación que indica que Gold Parser fue instalado correctamente.</p>
+
+
+<h3 id="Generando-nuestro-analizador-lexico-y-sintactico-con-Gold-Parser"><a href="#Generando-nuestro-analizador-lexico-y-sintactico-con-Gold-Parser" class="headerlink" title="Generando nuestro analizador léxico y sintáctico con Gold Parser"></a><strong>Generando nuestro analizador léxico y sintáctico con Gold Parser</strong></h3><p>Hacemos clic en el botón de Windows y buscamos “gold parser builder”.</p>
+
+
+<p>Ejecutamos la aplicación Gold Parser Builder y tendremos un ambiente de trabajo como el que se muestra a continuación.</p>
+
+
+<p>Lo primero que debemos hacer para comenzar a trabajar con Gold Parser Builder es definir la gramática, el ejemplo que inspiró este tutorial fue realizado con Jlex y Cup:</p>
+<ul>
+<li><a href="/2019/04/26/02-Mi-primer-proyecto-utilizando-Jlex-y-Cup-Windows/" title="Mi primer proyecto utilizando Jlex y Cup (Windows)">Mi primer proyecto utilizando Jlex y Cup (Windows)</a></li>
+</ul>
+<p>La gramática planteada para Jlex y Cup era ambigua y dicha ambigüedad se resolvía indicando de forma explicita la precedencia de los operadores aritméticos:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">precedence left MAS,MENOS;</span><br><span class="line">precedence left POR,DIVIDIDO;</span><br><span class="line">precedence right UMENOS; </span><br></pre></td></tr></table></figure>
+
+<p>Cup permite definir la precedencia y asociatividad de los operadores de forma explícita, en el caso de Gold Parser, esta opción no está disponible, por lo que es necesario utilizar una gramática no ambigua que respete la precedencia y asociatividad de los operadores.</p>
+<p>Tomando en cuenta lo anterior, se propone la siguiente gramática escrita con la sintaxis propia de Gold Parser:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;Name&quot;</span>    = <span class="string">&#x27;Mi Primer Proyecto en Gold Parser&#x27;</span></span><br><span class="line"><span class="string">&quot;Author&quot;</span>  = <span class="string">&#x27;Luis Lizama&#x27;</span></span><br><span class="line"><span class="string">&quot;Version&quot;</span> = <span class="string">&#x27;1.0&#x27;</span> </span><br><span class="line"><span class="string">&quot;About&quot;</span>   = <span class="string">&#x27;Ejemplo de una gramática simple que reconoce expresiones aritméticas&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Case Sensitive&quot;</span> = False </span><br><span class="line"><span class="string">&quot;Start Symbol&quot;</span>   = &lt;Statements&gt;</span><br><span class="line">    </span><br><span class="line">DECIMAL = &#123;Digit&#125;+<span class="string">&#x27;.&#x27;</span>&#123;Digit&#125;+</span><br><span class="line">ENTERO = &#123;Digit&#125;+</span><br><span class="line"></span><br><span class="line">&lt;Statements&gt; ::= &lt;Statement&gt; &lt;Statements&gt;</span><br><span class="line">               | &lt;Statement&gt;</span><br><span class="line"></span><br><span class="line">&lt;Statement&gt;  ::= Evaluar <span class="string">&#x27;[&#x27;</span> &lt;Expression&gt; <span class="string">&#x27;]&#x27;</span><span class="string">&#x27;;&#x27;</span></span><br><span class="line">               </span><br><span class="line">&lt;Expression&gt;   ::= &lt;Expression&gt; <span class="string">&#x27;+&#x27;</span> &lt;Mult Exp&gt; </span><br><span class="line">                 | &lt;Expression&gt; <span class="string">&#x27;-&#x27;</span> &lt;Mult Exp&gt; </span><br><span class="line">                 | &lt;Mult Exp&gt; </span><br><span class="line"></span><br><span class="line">&lt;Mult Exp&gt;    ::= &lt;Mult Exp&gt; <span class="string">&#x27;*&#x27;</span> &lt;Negate Exp&gt; </span><br><span class="line">                | &lt;Mult Exp&gt; <span class="string">&#x27;/&#x27;</span> &lt;Negate Exp&gt; </span><br><span class="line">                | &lt;Negate Exp&gt; </span><br><span class="line"></span><br><span class="line">&lt;Negate Exp&gt;  ::= <span class="string">&#x27;-&#x27;</span> &lt;Value&gt; </span><br><span class="line">                | &lt;Value&gt; </span><br><span class="line"></span><br><span class="line">&lt;Value&gt;       ::= ENTERO </span><br><span class="line">                | DECIMAL </span><br><span class="line">                | <span class="string">&#x27;(&#x27;</span> &lt;Expression&gt; <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Toda la documentación relacionada con la sintaxis de Gold Parser puede encontrarse en la <a target="_blank" rel="noopener" href="http://www.goldparser.org/">página oficial</a>.</p>
+<p>Una vez tengamos lista nuestra gramática, la ingresamos en la ventana Grammar de la aplicación Gold Parser Builder (para esto basta con copiar y pegar la gramática mostrada anteriormente).</p>
+
+
+<p>Luego procedemos a guardar la gramática seleccionando la opción “File” → “Save”, el archivo resultante tendrá extensión GRM, que es una extensión propia de Gold Parser.</p>
+
+
+<p>El archivo GRM con la gramática utilizada para este ejemplo está disponible en la <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica">carpeta Gramática</a> del repositorio de este ejemplo.</p>
+<p>Posteriormente seleccionamos la opción “Project” → “Analyze the Grammar”, esto analizará la gramática y nos mostrará los conflictos si existieran.</p>
+
+
+<p>Debemos corregir todos los errores antes de continuar, para este ejemplo no había ninguno. Esto podemos confirmarlo en la parte inferior de nuestro editor de Gold Parser Builder.</p>
+
+
+<p>Si existiesen errores o notificaciones se nos mostrarán en una ventana emergente de la siguiente manera:</p>
+
+
+<p>En este caso no teníamos errores, así que podemos proseguir con la creación de las tablas para el análisis LALR. Esto lo hacemos seleccionando la opción “Project” → “Create LALR Parse Tables”</p>
+
+
+<p>Podemos confirmar que nuestras tablas LALR fueron creadas exitosamente en la parte inferior de nuestro editor de Gold Parser Builder.</p>
+
+
+<p>Durante la creación de las tablas LALR es posible de que se detecten conflictos de desplazamiento-reducción y el asistente no nos permita continuar, en este caso debemos resolver estos conflictos y luego continuar. Por el contrario, si no tenemos conflictos que resolver, podemos continuar al último paso, crear las tablas del autómata finito determinista que será el encargado de realizar el análisis léxico. Para ello seleccionamos la opción “Project” → “Create DFA Lexer Tables”.</p>
+
+
+<p>Podemos confirmar que nuestras tablas para el autómata finito determinista fueron creadas exitosamente en la parte inferior de nuestro editor de Gold Parser Builder.</p>
+
+
+<p>Por último, procedemos a guardar todas las tablas, estas serán importadas posteriormente en nuestro programa para poder realizar el análisis léxico y sintáctico del texto recibido como entrada. Para ello seleccionamos la opción “Project” → “Save the Tables”.</p>
+
+
+<p>Se nos mostrará una ventana para que indiquemos la ruta en la cual deseamos almacenar las tablas, la seleccionamos y damos click en aceptar, con esto habremos generado un archivo EGT, esta ventana se cerrará y Gold Parser nos mostrará un mensaje diciendo que se guardaron las tablas correctamente.</p>
+
+
+<p>EGT es una extensión propia de Gold parser.</p>
+
+
+<p>El archivo EGT con las tablas generado para este ejemplo está disponible en la <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica">carpeta Gramática</a> del repositorio de este ejemplo.</p>
+<p>Una de las principales ventajas de Gold Parser es que tiene un módulo de test que permite visualizar el proceso de análisis de una forma detallada. Para utilizar el módulo de test, hacemos click en el ícono correspondiente, que tiene un pequeño cheque verde.</p>
+
+
+<p>O bien seleccionando la opción “Window” → “Test Grammar”</p>
+
+
+<p>Esto nos desplegará una ventana de test en la que podemos ingresar en el lado izquiero una entrada y posteriormente evaluar paso a paso esta entrada con el botón verde de ejecutar que se encuentra en la parte inferior izquierda, esto nos permitirá ver el progreso del análisis en el panel derecho con el detalle de cada estado.</p>
+
+
+<p>Luego de este pequeño paréntesis para explorar el módulo de test de Gold Parser continuaremos con nuestro proyecto. </p>
+<p>El siguiente paso es crear el esqueleto de un programa, para ello seleccionamos “Project” → “Create a Skeleton Program…”. </p>
+
+
+<p>Se nos desplegarán varias opciones para generar el esqueleto, para este ejemplo en específico utilizaremos Visual Basic .NET y como motor Cock .NET DLL.</p>
+
+
+<p>Seleccionaremos la opción de crear y nos mostrará una ventana desde la cual podremos seleccionar la ruta en la cual queremos guardar el esqueleto de nuestro programa. Obtendremos como resultado un archivo con extensión VB.</p>
+
+
+<p>El archivo VB generado con el esqueleto está disponible en la <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica">carpeta Gramática</a> del repositorio de este ejemplo.</p>
+<p>Esto es todo lo que haremos en Gold Parser, de acá en adelante utilizaremos Visual Studio.</p>
+<p>Abrimos Visual Studio.</p>
+
+
+<p>Seleccionamos “File” → “New” → “Project”, una vez abierto el wizard para crear nuevos proyectos seleccionamos el apartado “Visual Basic” → “Windows Desktop” → “Console App (.NET Framework)” y le pondremos como nombre Calculadora.</p>
+
+
+<p>Para poder utilizar el esqueleto que generamos en Gold Parser en el proyecto que acabamos de crear necesitaremos importar la librería .NET DLL que realiza el proceso de análisis, esta libería debe descargarse en la <a target="_blank" rel="noopener" href="http://goldparser.org/engine/5/net/index.htm">página oficial</a>. </p>
+
+
+<p>Luego de descargar y descomprimir la librería obtendremos el archivo “Gold Engine.dll” que es el que debemos importar en nuestro proyecto.</p>
+
+
+<p>Con el proyecto creado debemos de pegar el archivo de las tablas de análisis generadas en Gold Parser (Expresiones aritméticas.egt) y la librería que acabamos de descargar (GOLD Engine.dll) en la carpeta Calculadora&#x2F;Calculadora&#x2F;bin&#x2F;debug de nuestro proyecto. </p>
+
+
+<p>También debemos de pegar el esqueleto que generamos con Gold Parser (Expresiones aritméticas.vb) en la carpeta principal de nuestro proyecto.</p>
+
+<p>Regresamos a Visual Studio y desde el explorador de soluciones debemos de realizar dos procedimientos. </p>
+<p>El primero es importar el archivo que contiene el esqueleto generado en Gold Parser (Expresiones aritméticas.vb), para ello hacemos click derecho sobre el nombre de nuestro proyecto “Add” → “Existing Item…”.</p>
+
+
+<p>Luego seleccionamos el archivo de nuestro esqueleto.</p>
+
+
+<p>Veremos que ahora aparece en el explorador de soluciones.</p>
+
+
+<p>El segundo procedimiento a realizar en el explorador de soluciones es importar la librería que acabamos de pegar en nuestra carpeta debug, para hacerlo daremos click derecho en “References” → “Add Reference…”</p>
+
+
+<p>Esto nos desplegara una nueva ventana, seleccionamos la opción “Browse…” y seleccionamos nuestro archivo .dll y daremos click en aceptar.</p>
+
+
+<p>Por último, abrimos el archivo que contiene el esqueleto que generamos con Gold Parser (Expresiones aritméticas.vb) y dentro de las líneas de código buscar el método con el nombre Setup. Es la única instrucción que posee este método, debemos cambiar el nombre del archivo gramar.egt por el nombre de nuestro archivo de tablas (Expresiones aritméticas.egt), es de suma importancia que hayamos pegado nuestras tablas en la carpeta debug, de otra manera nuestro programa no las podrá encontrar y nos arrojará un error en tiempo de ejecución.</p>
+
+
+<p>Estas son todas las configuraciones que debemos de realizar para poder utilizar Gold Parser, de acá en adelante, el tutorial se enfoca en explicar el funcionamiento de los archivos que se generaron anteriormente.</p>
+<h3 id="Creando-un-archivo-de-entrada-para-nuestro-analizador"><a href="#Creando-un-archivo-de-entrada-para-nuestro-analizador" class="headerlink" title="Creando un archivo de entrada para nuestro analizador"></a><strong>Creando un archivo de entrada para nuestro analizador</strong></h3><p>Creamos un nuevo archivo de texto llamado entrada.txt. El contenido de este archivo es el siguiente:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Evaluar[<span class="number">1</span>+<span class="number">1</span>];</span><br><span class="line">Evaluar[<span class="number">1</span>+<span class="number">1</span>*<span class="number">2</span>];</span><br><span class="line">Evaluar[-(<span class="number">1</span>+<span class="number">1</span>*<span class="number">6</span>/<span class="number">3</span>-<span class="number">5</span>+<span class="number">7</span>)];</span><br><span class="line">Evaluar[-(<span class="number">1</span>+<span class="number">1</span>*<span class="number">6</span>/<span class="number">3</span>-<span class="number">5</span>+<span class="number">1</span>*-<span class="number">2</span>)];</span><br><span class="line">Evaluar[-(<span class="number">1.6</span>+<span class="number">1.45</span>)];</span><br></pre></td></tr></table></figure>
+
+<p>Este archivo de entrada será creado en la carpeta Calculadora&#x2F;Calculadora&#x2F;bin&#x2F;debug de nuestro proyecto. </p>
+
+
+<h3 id="Utilizando-el-esqueleto-generado-con-Gold-Parser"><a href="#Utilizando-el-esqueleto-generado-con-Gold-Parser" class="headerlink" title="Utilizando el esqueleto generado con Gold Parser"></a><strong>Utilizando el esqueleto generado con Gold Parser</strong></h3><p>En los pasos anteriores nos enfocamos en la definición de la gramática y las configuraciones que tenemos que realizar para poder utilizar los archivos que generamos con Gold Parser, pero no hemos programado ningún tipo de instrucción dentro de nuestro programa. </p>
+<p>Gold Parser se centra en generar un árbol de análisis sintáctico, de esta manera nosotros podremos recorrer este árbol como sea más conveniente, es por ello que no nos permite incrustar acciones semánticas al momento de definir la gramática, debemos de realizarlo directamente en el esqueleto generado, este esqueleto será modificado según convenaga para lograr nuestro objetivo.</p>
+<p>El archivo VB generado con el esqueleto (Expresiones aritméticas.vb) modificado con las acciones necesarias para evaluar las expresiones aritméticas, además de estar en la <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Calculadora/Calculadora">carpeta principal del proyecto</a> dentro del repositorio, está disponible en la <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoGoldParserVB/tree/master/Gram%C3%A1tica">carpeta Gramática</a>.</p>
+<p>Podremos notar que el esqueleto generado, en su método parse, posee una serie de estados los cuales por defecto tienen comentado su funcionamiento, los estados que alteraremos en este ejemplo son: </p>
+<ul>
+<li>LexicalError : Reportar errores léxicos.</li>
+<li>SyntaxError : Reportar errores sintácticos.</li>
+<li>Accept : Crear la raíz de nuestro árbol de análisis sintáctico.</li>
+</ul>
+<p>Definiremos una variable Root de tipo Gold.Reduction que será la raíz de nuestro árbol.</p>
+<p>Adicionalmente, podremos notar que el archivo también posee una función denominada CreateNewObject que posee una serie de casos los cuales tienen comentado a que producción de la gramática pertenecen, es aquí donde debemos de introducir las acciones semánticas que deseamos que se ejecuten al momento de reducir por cada producción.</p>
+<p>Esta función CreateNewObject viene definida únicamente como una plantilla, pero podremos darle la funcionalidad que nosotros deseemos. Para este ejemplo en específico se le cambió el nombre por “GetValue” ya que lo que necesitamos al final es obtener el valor resultante de evaluar cada expresión aritmética.</p>
+<p>Los métodos de nuestro parser son estáticos y no es necesario crear una instancia parser, pero si es necesario ejecutar el método Setup para que cargue las tablas de análisis.</p>
+<p>El programa por defecto está configurado para leer el archivo entrada.txt en la carpeta Calculadora&#x2F;Calculadora&#x2F;bin&#x2F;debug del proyecto.</p>
+<p>A continuación se muestra el resultado de ejecutar el archivo de entrada que preparamos anteriormente.</p>
+
+
+<p>Como podemos ver, obtenemos la salida esperada.</p>
+<h3 id="Acerca-del-autor"><a href="#Acerca-del-autor" class="headerlink" title="Acerca del autor:"></a><strong>Acerca del autor:</strong></h3><p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a target="_blank" rel="noopener" href="https://github.com/luisferliza">Luis Lizama</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<h3 id="Fuentes-consultadas"><a href="#Fuentes-consultadas" class="headerlink" title="Fuentes consultadas:"></a><strong>Fuentes consultadas:</strong></h3><p>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</p>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Compilers/">Compilers</a><a class="link-muted mr-2" rel="tag" href="/tags/Visual-Basic/">Visual Basic</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=68538d5759b0d100191b08a4&amp;product=sop" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Mi primer proyecto utilizando Irony</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/07/21/17-Mi-primer-proyecto-utilizando-Jison-Linux/"><span class="level-item">Mi primer proyecto utilizando Jison (Linux)</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Erick Navarro"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Erick Navarro</p><p class="is-size-6 is-block">Data Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Guatemala</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://www.linkedin.com/in/ericknd/" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ericknavarro"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="LinkedIn" href="https://www.linkedin.com/in/ericknd/"><i class="fab fa-linkedin"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AWS/"><span class="level-start"><span class="level-item">AWS</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/AWS/Alexa-Skills/"><span class="level-start"><span class="level-item">Alexa Skills</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/CloudFront/"><span class="level-start"><span class="level-item">CloudFront</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/EC2/"><span class="level-start"><span class="level-item">EC2</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/Lambda/"><span class="level-start"><span class="level-item">Lambda</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/Route-53/"><span class="level-start"><span class="level-item">Route 53</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/S3/"><span class="level-start"><span class="level-item">S3</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Computer-Science/"><span class="level-start"><span class="level-item">Computer Science</span></span><span class="level-end"><span class="level-item tag">19</span></span></a><ul><li><a class="level is-mobile" href="/categories/Computer-Science/Compilers/"><span class="level-start"><span class="level-item">Compilers</span></span><span class="level-end"><span class="level-item tag">17</span></span></a></li><li><a class="level is-mobile" href="/categories/Computer-Science/Data-Structures/"><span class="level-start"><span class="level-item">Data Structures</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Programming/"><span class="level-start"><span class="level-item">Programming</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Programming/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/"><img src="/gallery/thumbnails/27.png" alt="Mi primer proyecto utilizando Yacc y Lex"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-10-01T21:03:28.000Z">2020-10-01</time></p><p class="title"><a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/">Mi primer proyecto utilizando Yacc y Lex</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/"><img src="/gallery/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-03-16T01:09:28.000Z">2020-03-15</time></p><p class="title"><a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/">Intérprete sencillo utilizando PLY con Python 3</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/"><img src="/gallery/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-03-07T19:53:33.000Z">2020-03-07</time></p><p class="title"><a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/">Intérprete sencillo utilizando JavaCC</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/"><img src="/gallery/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-02-10T22:17:25.000Z">2020-02-10</time></p><p class="title"><a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/">Mi primer proyecto utilizando PLY con Python 3</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/"><img src="/gallery/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-02-10T22:14:34.000Z">2020-02-10</time></p><p class="title"><a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/">Mi primer proyecto utilizando JavaCC</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">October 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/03/"><span class="level-start"><span class="level-item">March 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/02/"><span class="level-start"><span class="level-item">February 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">August 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">July 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">May 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">April 2019</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Alexa-Skills/"><span class="tag">Alexa Skills</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CloudFront/"><span class="tag">CloudFront</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Compilers/"><span class="tag">Compilers</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data-Structures/"><span class="tag">Data Structures</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EC2/"><span class="tag">EC2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Lambda/"><span class="tag">Lambda</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Route-53/"><span class="tag">Route 53</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/S3/"><span class="tag">S3</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Visual-Basic/"><span class="tag">Visual Basic</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Erick Navarro" height="28"></a><p class="is-size-7"><span>&copy; 2025 Erick Navarro</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

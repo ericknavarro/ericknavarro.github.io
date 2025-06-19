@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Crear un Alexa Skill - Erick Navarro</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Erick Navarro"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Erick Navarro"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="En este tutorial crearemos un Alexa Skill, pero nuestro principal objetivo es explorar estas herramientas de AWS y familiarizarnos con su uso para poder elaboraro soluciones más complejas y determinar"><meta property="og:type" content="blog"><meta property="og:title" content="Crear un Alexa Skill"><meta property="og:url" content="https://ericknavarro.github.io/2019/05/17/15-Crear-un-Alexa-Skill/"><meta property="og:site_name" content="Erick Navarro"><meta property="og:description" content="En este tutorial crearemos un Alexa Skill, pero nuestro principal objetivo es explorar estas herramientas de AWS y familiarizarnos con su uso para poder elaboraro soluciones más complejas y determinar"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://ericknavarro.github.io/gallery/thumbnails/15.png"><meta property="article:published_time" content="2019-05-17T16:01:59.000Z"><meta property="article:modified_time" content="2025-06-18T23:09:03.864Z"><meta property="article:author" content="Erick Navarro"><meta property="article:tag" content="Alexa Skills"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://ericknavarro.github.io/gallery/thumbnails/15.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://ericknavarro.github.io/2019/05/17/15-Crear-un-Alexa-Skill/"},"headline":"Crear un Alexa Skill","image":["https://ericknavarro.github.io/gallery/thumbnails/15.png"],"datePublished":"2019-05-17T16:01:59.000Z","dateModified":"2025-06-18T23:09:03.864Z","author":{"@type":"Person","name":"Erick Navarro"},"publisher":{"@type":"Organization","name":"Erick Navarro","logo":{"@type":"ImageObject","url":"https://ericknavarro.github.io/img/logo.svg"}},"description":"En este tutorial crearemos un Alexa Skill, pero nuestro principal objetivo es explorar estas herramientas de AWS y familiarizarnos con su uso para poder elaboraro soluciones más complejas y determinar"}</script><link rel="canonical" href="https://ericknavarro.github.io/2019/05/17/15-Crear-un-Alexa-Skill/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-145306707-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-145306707-1');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Erick Navarro" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Connect on LinkedIn" href="https://www.linkedin.com/in/ericknd/"><i class="fab fa-linkedin"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-05-17T16:01:59.000Z" title="5/17/2019, 10:01:59 AM">2019-05-17</time></span><span class="level-item"><a class="link-muted" href="/categories/AWS/">AWS</a><span> / </span><a class="link-muted" href="/categories/AWS/Alexa-Skills/">Alexa Skills</a></span></div></div><h1 class="title is-3 is-size-4-mobile">Crear un Alexa Skill</h1><div class="content"><p>En este tutorial crearemos un Alexa Skill, pero nuestro principal objetivo es explorar estas herramientas de AWS y familiarizarnos con su uso para poder elaboraro soluciones más complejas y determinar cómo podemos usarlas para nuestros fines.</p>
+<p>Antes de comenzar vale la pena hacer una aclaración sobre la diferencia entre Alexa y Echo:</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.amazon.com/es/alexa">Alexa</a> es el servicio de voz ubicado en la nube de Amazon disponible en los dispositivos de Amazon y dispositivos tercios con Alexa integrada.</p>
+</li>
+<li><p>Amazon Echo es un altavoz inteligente, es un dispositivo de hardware producido por Amazon.</p>
+</li>
+</ul>
+<p>Sucede a menudo que los usuarios utilizan el término alexa para referirse indiscriminadamente a ambas cosas, pero lo cierto es que tecnicamente son diferentes.</p>
+<p>A lo anterior debemos agregar que Alexa está presente en muchos dispositivos de Amazon.</p>
+<p>Luego de la aclaración anterior comenzaremos con el tutorial.</p>
+<h2 id="1-Crear-un-S3-bucket-publico"><a href="#1-Crear-un-S3-bucket-publico" class="headerlink" title="1. Crear un S3 bucket público"></a><strong>1. Crear un S3 bucket público</strong></h2><ul>
+<li><p>Ingresamos a la <a target="_blank" rel="noopener" href="https://console.aws.amazon.com/">consola de AWS</a></p>
+</li>
+<li><p>Buscamos el <a target="_blank" rel="noopener" href="https://s3.console.aws.amazon.com/">servicio S3</a></p>
+</li>
+<li><p>Seleccionamos la opción create bucket</p>
+</li>
+<li><p>Asignamos un nombre válido para el nuevo bucket, un nombre que no haya sido usado para ningun otro bucket (recibiremos un mensaje de error si el nombre no fuera válido).</p>
+</li>
+<li><p>Seleccionamos la opción create</p>
+</li>
+</ul>
+
+
+<p>Posteriormente hacemos todo el contenido del bucket público, para ello seleccionamos nuestro bucket creado y hacemos click en el boton Edit public access settings</p>
+
+
+<p>Validamos que todas las opciones no esten seleccionadas y hacemos click en save.</p>
+
+
+<p>Escribimos el texto solicitado y hacemos click en confirm.</p>
+
+
+<p>Entramos al bucket cerado, nos movemos a la pesataña properties y en la opción Bucket Policy, configuramos la siguiente política:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Statement&quot;</span>: [</span><br><span class="line">    &#123; </span><br><span class="line">      <span class="string">&quot;Sid&quot;</span>: <span class="string">&quot;PublicReadGetObject&quot;</span>, </span><br><span class="line">      <span class="string">&quot;Effect&quot;</span>: <span class="string">&quot;Allow&quot;</span>, </span><br><span class="line">      <span class="string">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>, </span><br><span class="line">      <span class="string">&quot;Action&quot;</span>: <span class="string">&quot;s3:GetObject&quot;</span>, </span><br><span class="line">      <span class="string">&quot;Resource&quot;</span>: <span class="string">&quot;ARN here/*&quot;</span> </span><br><span class="line">    &#125; </span><br><span class="line">  ] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Es impotante cambiar la parte de “ARN here” por el ARN de nuestro bucket, posteriormente hacemos click en save y nuestra política será aplicada:</p>
+
+
+<h2 id="2-Explorar-Amazon-Polly"><a href="#2-Explorar-Amazon-Polly" class="headerlink" title="2. Explorar Amazon Polly"></a>2. Explorar Amazon Polly</h2><p>En este segmento del tutorial podremos explorar el servicio de <a target="_blank" rel="noopener" href="https://aws.amazon.com/es/polly/">Amazon Polly</a> a nivel general, lo haremos creando un audio a partir de cierto texto, este audio será almacenado en S3, lo primero es buscar el servicio Amazon Polly :</p>
+
+
+<p>Una vez dentro de la <a target="_blank" rel="noopener" href="http://console.aws.amazon.com/polly">consola de Amazon Polly</a>, hacemos click en Get Started:</p>
+
+
+<p>Posteriormente nos encontraremos con un panel en el que podemos escribir texto que será leído según las configuraciones que hagamos, podemos por ejemplo configurar el idioma del texto y la persona que lo leerá, es decir, si esta persona leerá con un tono de voz masculino o femenino y el tono de voz de la persona en específico, incluso tenemos para el mismo idioma diferentes acentos, por ejemplo, yo incrusté cierto texto que será leído en español mexicano, con una voz femenina perteneciente a Mia.</p>
+
+
+<p>Luego vamos a hacer click en synthesize to S3, para poder exportar el audio correspondiente a este texto en nuestro bucket de S3.</p>
+<p>Al hacerlo nos desplegará una ventana en la que debemos ingresar el nombre de nuestro bucket.</p>
+
+
+<p>Seleccionamos Synthesize y se creará una tarea para sintetizar el audio correspondiente al texto ingresado.</p>
+
+
+<p>En la pestaña de S3 synthesis tasks podemos ver el estado de esta tarea para determinar si ya fue completada o no.</p>
+
+
+<p>Al completar la tarea, tendremos este audio en el bucket que indicamos.</p>
+
+
+<h2 id="3-Crear-una-funcion-Lambda"><a href="#3-Crear-una-funcion-Lambda" class="headerlink" title="3. Crear una función Lambda"></a>3. Crear una función Lambda</h2><p>Buscamos el servicio <a target="_blank" rel="noopener" href="https://aws.amazon.com/es/lambda/">AWS Lambda</a> en la consola de aws.</p>
+
+
+<p>Una vez en la consola de <a target="_blank" rel="noopener" href="https://console.aws.amazon.com/lambda">AWS Lambda</a>, procedemos a crear una nueva función, es importante crear esta función en una region en donde Alexa trigger esté habilitado, yo lo haré en **US East (N. Virginia). **Esto puede verse en la esquina superior derecha de nuestra consola.</p>
+
+
+<p>Luego de hacer click en Create function, encontraremos en el panel 3 opciones, Author from scratch, Use a blueprint y Browse serverless app repository, nosotros seleccionaremos esta última y buscaremos el repositorio <strong>alexa-skills-kit-nodejs-factskill.</strong></p>
+
+
+<p>Escogemos el respositorio y dejamos todas sus configuraciones con los valores por defecto, posteriormente hacemos click en deploy y esperamos hasta que termine el proceso de deploy de nuestra función:</p>
+
+
+<p>Ingresamos a la función y vemos que ya cuenta con un alexa trigger, esto porque hicimos el deploy de la función en una región que lo soporta, en este caso N. Virginia.</p>
+
+
+<p>En el código autogenerado por la función veremos que hay un set de oraciones aleatoreas, agregaré mi nombre en el listado, luego procedí a hacer click en Save, para guardar los cambios en la función.</p>
+
+
+<p>Vamos a <a target="_blank" rel="noopener" href="https://developer.amazon.com/">https://developer.amazon.com/</a> e ingresamos a Amazon Alexa:</p>
+
+
+<p>Una vez registrados y dentro de nuestra cuenta, procedemos a buscar el Alexa Skills kit:</p>
+
+
+<p>En la consola de Alexa, escogemos la opción <strong>Create Skill.</strong></p>
+
+
+<p>Luego de crearla nos da la opción de escoger un template, escogemos <strong>Fact Skill</strong> y continuamos:</p>
+
+
+<p>Luego estaremos en el Alexa Development Console:</p>
+
+
+<p>Vamos a la sección de invocations, asignamos un nombre a nuestra invocation, en este caso coloque el nombre <strong>Cloud Facts</strong> y seleccionamos la opción save model:</p>
+
+
+<p>Regresamos a la consola de Lambda, a la función anteriormente creada e identificamos y copiamos el ARN de nuestra función:</p>
+
+
+<p>Vamos de nuevo a Alexa Developer Console, a la sección <strong>Endpoint</strong> y configuramos el ARN de nuestra función, de tal manera que nuestro Alexa Skill apuntará a la fución Lambda anteriormente creada. Luego de agregar el ARN, seleccionamos <strong>Save Endpoints</strong>.</p>
+
+
+<p>Vamos a la sección <strong>GetNewFactIntent</strong>, incresamos un nuevo fact, **a cloud fact **en este caso, luego agregamos este fact y seleccionamos <strong>Save Model</strong> para guardar el modelo. Y luego <strong>Build Model</strong> para construir nuestro modelo. Al finalizar el Build recibiremos una notificación.</p>
+
+
+<p>Luego de terminar el <strong>Build</strong>, vamos a la sección <strong>Test</strong>,** **cambiamos el modo a <strong>Development</strong> e ingresamos la instrucción <strong>open cloud facts</strong>. Luego vamos a obtejer un fact de la función asociada. En este caso recibí el siguiente: <strong>Here’s your fact: A year on Mercury is just 88 days long</strong>. Con lo anterior tenemos que nuestra Alexa Skill funciona y que nuestra función lambda también lo hace.</p>
+
+
+<p>Regresamos a la consola de Lambda y seleccionamos todos los facts del arreglo.</p>
+
+
+<p>Los eliminamos, dejamos solamente nuestro nombre y guardamos los cambios haciendo click en el boton <strong>Save</strong>.</p>
+
+
+<p>Vamos nuevamente a <strong>Alexa Developer Console</strong> e ingresamso <strong>open cloud facts.</strong></p>
+
+
+<p>Luego de ingresarlo el único resultado posible es nuestro nombre, pues eliminamos el resto de facts.</p>
+
+
+<p>Ahora en lugar de usar mi nombre como Fact, usaremos el archio de audio generado anteriormente con Polly, para ello vamos a nuestro bucket, a nuestro archivo de audio y en sus propiedades de la pestaña Overview encontraremos el URL del file.</p>
+
+
+<p>Vamos a la consola de Lambda y modificamos el fact, en lugar de ser nuestro nombre introducimos el URL de nuestro audio con el siguiente formato para indicar que se trata de un audio</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&lt;audio src=\&quot;https://s3.amazonaws.com/ericknavarropolly2019/c4c0a83c-3718-49b4-bb72-0ee529ddf95b.mp3\&quot;/&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Y hacemos click en <strong>Save</strong>.</p>
+
+
+<p>Antes de ejecutar nuestro Skill, es importante que nos aseguremos de que el file en el bucket es público, para ello vamos a la consola de S3, seleccionamos nuestro bucket, seleccionamos nuestro archivo y seleccionamos la opción <strong>Make Public</strong>.</p>
+
+
+<p>Posteriormente vamos a nuestro Skill, ingresamos la instrucción open cloud facts y obtendremos el audio configurado.</p>
+
+
+<p>Con esto llegamos al final del tutorial, espero que esta introducción a Alexa Skills, les motive a seguir explorando estas herramientas de AWS.</p>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Alexa-Skills/">Alexa Skills</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=68538d5759b0d100191b08a4&amp;product=sop" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/05/21/16-Configurar-un-servidor-web-en-AWS-EC2/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Configurar un servidor web en AWS EC2</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/05/15/14-Creacion-de-un-CloudFront-distribution/"><span class="level-item">Creación de un CloudFront distribution</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Erick Navarro"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Erick Navarro</p><p class="is-size-6 is-block">Data Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Guatemala</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://www.linkedin.com/in/ericknd/" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ericknavarro"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="LinkedIn" href="https://www.linkedin.com/in/ericknd/"><i class="fab fa-linkedin"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AWS/"><span class="level-start"><span class="level-item">AWS</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/AWS/Alexa-Skills/"><span class="level-start"><span class="level-item">Alexa Skills</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/CloudFront/"><span class="level-start"><span class="level-item">CloudFront</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/EC2/"><span class="level-start"><span class="level-item">EC2</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/Lambda/"><span class="level-start"><span class="level-item">Lambda</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/Route-53/"><span class="level-start"><span class="level-item">Route 53</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/S3/"><span class="level-start"><span class="level-item">S3</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Computer-Science/"><span class="level-start"><span class="level-item">Computer Science</span></span><span class="level-end"><span class="level-item tag">19</span></span></a><ul><li><a class="level is-mobile" href="/categories/Computer-Science/Compilers/"><span class="level-start"><span class="level-item">Compilers</span></span><span class="level-end"><span class="level-item tag">17</span></span></a></li><li><a class="level is-mobile" href="/categories/Computer-Science/Data-Structures/"><span class="level-start"><span class="level-item">Data Structures</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Programming/"><span class="level-start"><span class="level-item">Programming</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Programming/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/"><img src="/gallery/thumbnails/27.png" alt="Mi primer proyecto utilizando Yacc y Lex"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-10-01T21:03:28.000Z">2020-10-01</time></p><p class="title"><a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/">Mi primer proyecto utilizando Yacc y Lex</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/"><img src="/gallery/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-03-16T01:09:28.000Z">2020-03-15</time></p><p class="title"><a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/">Intérprete sencillo utilizando PLY con Python 3</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/"><img src="/gallery/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-03-07T19:53:33.000Z">2020-03-07</time></p><p class="title"><a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/">Intérprete sencillo utilizando JavaCC</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/"><img src="/gallery/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-02-10T22:17:25.000Z">2020-02-10</time></p><p class="title"><a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/">Mi primer proyecto utilizando PLY con Python 3</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/"><img src="/gallery/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-02-10T22:14:34.000Z">2020-02-10</time></p><p class="title"><a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/">Mi primer proyecto utilizando JavaCC</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">October 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/03/"><span class="level-start"><span class="level-item">March 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/02/"><span class="level-start"><span class="level-item">February 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">August 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">July 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">May 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">April 2019</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Alexa-Skills/"><span class="tag">Alexa Skills</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CloudFront/"><span class="tag">CloudFront</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Compilers/"><span class="tag">Compilers</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data-Structures/"><span class="tag">Data Structures</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EC2/"><span class="tag">EC2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Lambda/"><span class="tag">Lambda</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Route-53/"><span class="tag">Route 53</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/S3/"><span class="tag">S3</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Visual-Basic/"><span class="tag">Visual Basic</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Erick Navarro" height="28"></a><p class="is-size-7"><span>&copy; 2025 Erick Navarro</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

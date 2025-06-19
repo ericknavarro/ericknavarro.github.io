@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: C# - Erick Navarro</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Erick Navarro"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Erick Navarro"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Erick Navarro"><meta property="og:url" content="https://ericknavarro.github.io/"><meta property="og:site_name" content="Erick Navarro"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://ericknavarro.github.io/img/og_image.png"><meta property="article:author" content="Erick Navarro"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://ericknavarro.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://ericknavarro.github.io"},"headline":"Erick Navarro","image":["https://ericknavarro.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Erick Navarro"},"publisher":{"@type":"Organization","name":"Erick Navarro","logo":{"@type":"ImageObject","url":"https://ericknavarro.github.io/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-145306707-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-145306707-1');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Erick Navarro" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Connect on LinkedIn" href="https://www.linkedin.com/in/ericknd/"><i class="fab fa-linkedin"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">C#</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-07T19:53:33.000Z" title="3/7/2020, 1:53:33 PM">2020-03-07</time></span><span class="level-item"> Erick Navarro </span><span class="level-item"><a class="link-muted" href="/categories/Computer-Science/">Computer Science</a><span> / </span><a class="link-muted" href="/categories/Computer-Science/Compilers/">Compilers</a></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/">Intérprete sencillo utilizando JavaCC</a></p><div class="content"><p>De no estar familiarizado con la herramienta JavaCC, se recomienda al lector seguir el siguiente tutorial:</p>
+<ul>
+<li><a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/" title="Mi primer proyecto utilizando JavaCC">Mi primer proyecto utilizando JavaCC</a></li>
+</ul>
+<p>El desarrollo con JavaCC resulta sencillo, pero la legibilidad de la gramática puede llegar a ser un inconveniente si no se trata con la atención debida, sin embargo, el resto de las funcionalidades que nos ofrece JavaCC son un buen aliciente para utilizarlo, por lo tanto en esta ocasión vamos a desarrollar un intérprete, este contendrá la ejecución de sentencias básicas, como declaraciones de variables, asignaciones, sentencias de control, funciones y demás. El proyecto completo del ejemplo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC">Intérprete sencillo utilizando JavaCC</a></li>
+</ul>
+<h3 id="Conceptos-basicos"><a href="#Conceptos-basicos" class="headerlink" title="Conceptos básicos"></a><strong>Conceptos básicos</strong></h3><ul>
+<li><strong>Intérprete</strong>: Es un tipo común de procesador de lenguaje. En vez de producir un programa destino como una traducción, el intérprete ejecuta directamente las operaciones especificadas en el programa de origen (fuente) con las entradas proporcionadas por el usuario.</li>
+<li><strong>Árbol de sintaxis abstracta (AST)</strong>: es una representación simplificada de la estructura sintáctica del código fuente. A nivel de programación un AST es una estructura de datos que se genera durante el proceso de análisis sintáctico.</li>
+</ul>
+<h3 id="Lenguaje-de-entrada"><a href="#Lenguaje-de-entrada" class="headerlink" title="Lenguaje de entrada"></a><strong>Lenguaje de entrada</strong></h3><p>En la raíz del proyecto hay un archivo llamado <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/entrada.txt">entrada.txt</a>, este contiene un ejemplo con las instrucciones que el lenguaje soporta.</p>
+<h3 id="Listado-instrucciones-soportadas"><a href="#Listado-instrucciones-soportadas" class="headerlink" title="Listado instrucciones soportadas"></a><strong>Listado instrucciones soportadas</strong></h3><ul>
+<li>Declaración de variables</li>
+<li>Asignación de variables</li>
+<li>Evaluación de expresiones aritméticas, lógicas y relaciones</li>
+<li>If…elseif…else</li>
+<li>While</li>
+<li>Continue</li>
+<li>Break</li>
+<li>Return</li>
+<li>Declaración de funciones</li>
+<li>Llamadas a funciones</li>
+<li>Recursividad</li>
+<li>Funciones nativas: pie, toUpper. Pie genera una gráfica pie, y toUpper convierte a mayúsculas cierta cadena.</li>
+<li>Comentarios de una línea y multilínea</li>
+<li>Control de excepciones semánticas</li>
+</ul>
+<h3 id="Estructura-del-archivo-Gramatica-jj-de-JavaCC"><a href="#Estructura-del-archivo-Gramatica-jj-de-JavaCC" class="headerlink" title="Estructura del archivo Gramatica.jj de JavaCC"></a><strong>Estructura del archivo <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Analizador/Gramatica.jj">Gramatica.jj</a> de JavaCC</strong></h3><p>La extensión para los archivos JavaCC es .jj, a continuación vamos a describir la estructura del <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Analizador/Gramatica.jj">archivo de JavaCC utilizado para este ejemplo</a>.</p>
+<p><strong>Sección de opciones</strong><br>Aquí vamos a indicar que no haga distinción entre mayúsculas y minúsculas, además de indicar que los métodos de nuestro archivo luego de compilados <strong>no sean estáticos</strong>.</p>
+<p><strong>Sección de parserBegin y parserEnd</strong><br>Aquí vamos a definir el nombre de nuestro paquete, adicionalmente y muy importante todos los import de archivos que vayamos a utilizar en las acciones para generar nuestro AST. Por último vamos a crear una clase vacía, esta es la que vamos a utilizar para invocar a nuestra gramática.</p>
+<p><strong>Sección de análisis léxico</strong><br>En este punto vamos a definir todos los tokens que vamos a utilizar en el lenguaje:</p>
+<ul>
+<li><em>Sección skip</em><br>Contendrá todos los tokens que javacc va a ignorar cuando los reconozca, por ejemplo los comentarios o saltos de línea, espacios en blanco, etc.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SKIP : &#123;</span><br><span class="line">      <span class="string">&quot; &quot;</span></span><br><span class="line">    | <span class="string">&quot;\t&quot;</span></span><br><span class="line">    | <span class="string">&quot;\r&quot;</span></span><br><span class="line">    | <span class="string">&quot;\n&quot;</span></span><br><span class="line">    | &lt;<span class="string">&quot;//&quot;</span> (~[<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;\r&quot;</span>])*&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Sección de token</em><br>En esta sección cada vez que se reconozca un lexema este generará un nuevo objeto de tipo token.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TOKEN : &#123;</span><br><span class="line">      &lt;NUMERO: ([<span class="string">&quot;0&quot;</span>-<span class="string">&quot;9&quot;</span>])+&gt;</span><br><span class="line">    | &lt;DECIMAL: ([<span class="string">&quot;0&quot;</span>-<span class="string">&quot;9&quot;</span>])+<span class="string">&quot;.&quot;</span>([<span class="string">&quot;0&quot;</span>-<span class="string">&quot;9&quot;</span>])+&gt;</span><br><span class="line">    | &lt;ENTERO: <span class="string">&quot;Numero&quot;</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Sección more</em><br>Sección utilizada para la creación de estados.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MORE :</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;\&quot;&quot;</span> :STRING_STATE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;STRING_STATE&gt; MORE:</span><br><span class="line">&#123;</span><br><span class="line">    &lt;~[<span class="string">&quot;\&quot;&quot;</span>]&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Seccion-de-analisis-sintactico"><a href="#Seccion-de-analisis-sintactico" class="headerlink" title="Sección de análisis sintáctico"></a><strong>Sección de análisis sintáctico</strong></h3><p>Aquí vamos a definir la gramática y agregar las acciones correspondientes para generar nuestro AST. Ciertas producciones van a generar una clase que tiene cierta funcionalidad donde se indica lo que la ejecución deberá hacer. </p>
+<p><em>Veamos el caso del while</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/** While -&gt; <span class="keyword">while</span>(condicion) instrucciones */</span><br><span class="line">AST Mientras() :</span><br><span class="line">&#123;AST e; ArrayList&lt;AST&gt; ins;&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &lt;MIENTRAS&gt; &lt;PARENI&gt; e=Expresion() &lt;PAREND&gt; ins=<span class="function"><span class="title">Bloque</span></span>() </span><br><span class="line">    &#123;<span class="built_in">return</span> new Mientras(e, ins, token.beginLine, token.beginColumn);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Con esta gramática observamos lo siguiente, tenemos dos variables:</p>
+<ul>
+<li>AST e</li>
+<li>ArrayList<AST> ins</li>
+</ul>
+<p>AST es nuestra clase abstracta asociada con la variable e que contendrá la condición de nuestro while, y el arraylist contendrá una lista de estas clases, esto con el fin de tener una lista de instrucciones.<br>Como sabemos un while necesita de una condición y una lista de instrucciones, lo cual se cumple en el diseño planteado, por lo tanto vamos a retornar una instancia de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java">Mientras</a>.</p>
+<p>Luego de retornar nuestra clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java">Mientras</a>, el analizador se encarga de continuar la reducción nuestras producciones, y agregar esta clase a una lista de instrucciones ya que la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java">Mientras</a> es una instrucción en sí misma.<br>Al finalizar el análisis de la entrada se debería generar un árbol, que básicamente contiene una lista de instrucciones, y estas instrucciones pueden ser mientras, imprimir, llamadas, etc.<br>Esta es la idea general detrás de las acciones del análisis sintáctico, retornar clases que van a formar un AST, que nos servirá para el análisis semántico y para la ejecución de nuestras instrucciones.</p>
+<h3 id="Analisis-semantico-y-ejecucion-de-codigo"><a href="#Analisis-semantico-y-ejecucion-de-codigo" class="headerlink" title="Análisis semántico y ejecución de código"></a><strong>Análisis semántico y ejecución de código</strong></h3><p>Aquí nos vamos a encargar de verificar que lo que ejecutemos tenga sentido, vamos a retomar el ejemplo de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Instrucciones/Mientras.java">Mientras</a>, específicamente la sobre-escritura del método interpretar:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public Object interpretar(Tabla tabla, Arbol tree) &#123;</span><br><span class="line">    Object valorCondicion = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        Tabla t = new Tabla(tabla);</span><br><span class="line">        valorCondicion = condicion.interpretar(t, tree);</span><br><span class="line">        <span class="keyword">if</span> (valorCondicion instanceof Excepcion) &#123;</span><br><span class="line">            <span class="built_in">return</span> valorCondicion;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!(valorCondicion instanceof Boolean)) &#123;</span><br><span class="line">            Excepcion ex = new Excepcion(<span class="string">&quot;Semantico&quot;</span>, <span class="string">&quot;Se esperaba un valor booleano para la condicion&quot;</span>, fila, columna);</span><br><span class="line">            tree.getExcepciones().add(ex);</span><br><span class="line">            <span class="built_in">return</span> ex;</span><br><span class="line">        &#125;</span><br><span class="line">        Object result = null;</span><br><span class="line">        <span class="keyword">if</span> ((Boolean) valorCondicion) &#123;</span><br><span class="line">            for (AST m : instrucciones) &#123;</span><br><span class="line">                result = m.interpretar(t, tree);</span><br><span class="line">                if (result instanceof Retorno || result instanceof Excepcion) &#123;</span><br><span class="line">                    return result;</span><br><span class="line">                &#125;</span><br><span class="line">                if(result instanceof Detener)&#123;</span><br><span class="line">                    return null;</span><br><span class="line">                &#125;</span><br><span class="line">                if(result instanceof Continue)&#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; while ((Boolean) valorCondicion);</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Se sobre-escribe la función interpretar que viene desde nuestra clase abstracta <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java">AST</a>, cada clase que herede de <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java">AST</a> le dará un distinto comportamiento a este método en base a lo que se quiere realizar.</p>
+<p>En este caso necesitamos darle el comportamiento de un while, haciendo lo siguiente:</p>
+<ul>
+<li>Declaramos una variable que almacenara nuestra condición</li>
+<li>Iniciamos un ciclo doWhile con la condición establecida en la variable creada anteriormente</li>
+<li>En las instrucciones del do, crearemos un nuevo ámbito para nuestro mientras</li>
+<li>Obtenemos el valor de la condición y lo asignamos a la variable creada al inicio</li>
+<li>Si el valor obtenido es una excepción vamos a retornar este valor para que sea reportado.</li>
+<li>Si continua la ejecución vamos ahora a verificar que el valor obtenido sea de tipo booleano, sino fuera un booleano vamos a generar una nueva excepción y la vamos a retornar para que sea reportada.</li>
+<li>Si la condición fuera valida vamos a tener un if con esta condición y si el valor fuera true inicia la ejecución de cada instrucción en nuestra lista</li>
+<li>Si fuera false, simplemente ignora el if y nuestro doWhile termina</li>
+<li>Dentro del for para recorrer las instrucciones nos encontramos que en cada iteración debemos verificar que lo que obtenemos de valor no sea una excepción ya que si lo fuera la debemos retornar para que sea reportada.</li>
+<li>Además verificamos si fuera un break, continue o return para saber que hacer en cada caso.</li>
+<li>Por ejemplo si fuera retorno vamos a devolver el valor como tal, si fuera un continue únicamente tenemos que ir a la siguiente iteración por lo que cortamos la iteración del ciclo interno donde estamos para que no se sigan ejecutando el resto de las instrucciones y si fuera un break debemos terminar la ejecución del mientras por lo tanto terminamos la ejecución de nuestro doWhile.<br>Esta sería la lógica para un ciclo while, y así lo haremos con todas las instrucciones, cada una tendrá una implementación distinta.</li>
+</ul>
+<h3 id="Clases-importantes-del-proyecto"><a href="#Clases-importantes-del-proyecto" class="headerlink" title="**Clases importantes del proyecto **"></a>**Clases importantes del proyecto **</h3><p>Estas clases son clave para el desarrollo de nuestro intérprete y se explicarán a continuación</p>
+<ul>
+<li><em><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java">Clase abstracta AST</a></em><br>Contiene los atributos y métodos que tendrán las instrucciones en común, además el método interpretar que será sobre-escrito en cada implementación, la finalidad de esta clase es poder modelar clases de distintos tipos que comparten un comportamiento cómun que en este caso sería que se pueden interpretar.</li>
+<li><em><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Simbolo.java">Clase símbolo</a></em><br>Esta clase nos sirve como nodo para crear nuestras variables, vemos que contiene tipo, identificador y valor, aunque esto puede variar dependiendo del tipo de interprete que estemos construyendo.</li>
+<li><em><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Tabla.java">Clase tabla</a></em><br>Esta a tener la función de tabla de símbolos, aquí vamos a almacenar nuestras variables y funciones, nuestras variables las vamos a almacenar en un hashmap y las funciones en un arraylist. Contamos con métodos que nos ayudaran a obtener, guardar variables, obtener y guardar funciones.</li>
+<li><em><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Arbol.java">Clase árbol</a></em><br>Es la clase que nos devuelve el análisis sintáctico contiene las instrucciones que deberán ser ejecutadas, la lista de excepción que vamos a reportar y la tabla global para cuando ejecutemos las llamadas a funciones.</li>
+<li><em><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Tipo.java">Clase tipo</a></em><br>Aquí es donde vamos a definir los tipos que contendrá nuestro interprete.</li>
+<li><em><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Expresiones/Funcion.java">Clase función</a></em><br>Como cualquier otra instrucción, extiende de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Abstract/AST.java">AST</a>, y recibe una lista de parámetros y el nombre de la función y una lista de instrucciones.<br>Y para la ejecución únicamente necesitamos recorrer la lista de instrucciones ejecutando el método interpretar asociado a cada una de estas.</li>
+</ul>
+<h3 id="Creacion-de-funciones-nativas"><a href="#Creacion-de-funciones-nativas" class="headerlink" title="Creación de funciones nativas"></a><strong>Creación de funciones nativas</strong></h3><p>Para funciones nativas es muy sencillo, únicamente debemos extender de la clase función y modificar el comportamiento por cualquier otro que deseemos. Tomamos de ejemplo la función nativa <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/Nativas/aMayuscula.java">aMayuscula</a>, esta recibe en su constructor los mismos datos que la funciones y únicamente se va a diferenciar en el método interpretar donde le daremos una lógica distinta.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public Object interpretar(Tabla tabla, Arbol tree) &#123;</span><br><span class="line">    Simbolo simbolo = tabla.getVariable(<span class="string">&quot;toUpper%%parametro1&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (simbolo == null) &#123;</span><br><span class="line">        Excepcion ex = new Excepcion(<span class="string">&quot;Semantico&quot;</span>, <span class="string">&quot;No se ha encontrado la variable &quot;</span> + this.nombre + <span class="string">&quot;.&quot;</span>, fila, columna);</span><br><span class="line">        tree.getExcepciones().add(ex);</span><br><span class="line">        <span class="built_in">return</span> ex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!simbolo.getTipo().equals(new Tipo(Tipo.Tipos.CADENA))) &#123;</span><br><span class="line">        Excepcion ex = new Excepcion(<span class="string">&quot;Semantico&quot;</span>, <span class="string">&quot;El tipo de los parametros no coinciden.&quot;</span>, fila, columna);</span><br><span class="line">        tree.getExcepciones().add(ex);</span><br><span class="line">        <span class="built_in">return</span> ex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> (simbolo.getValor() + <span class="string">&quot;&quot;</span>).toUpperCase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ejecucion-de-la-entrada"><a href="#Ejecucion-de-la-entrada" class="headerlink" title="Ejecución de la entrada"></a><strong>Ejecución de la entrada</strong></h3><p>Para ejecutar la entrada debemos instanciar nuestra gramática, esto sucede en la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/interpretejavacc/UIController.java">UIController</a>, específicamente dentro del método Ejecutar:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Gramatica parser = new Gramatica(new BufferedReader(new StringReader(entrada.getText())));</span><br><span class="line">Arbol arbol = parser.Analizar();</span><br><span class="line">EjecutarInstrucciones(arbol);</span><br></pre></td></tr></table></figure>
+<p>Como mencionamos el resultado de ejecutar nuestra gramática nos devolverá un objeto de tipo <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/TablaSimbolos/Arbol.java">Arbol</a>, lo enviamos a un método para tratarlo.<br>En este método pasamos la consola de la interfaz a nuestro árbol para imprimir cosas, crear la tabla global y asignarla a nuestro árbol, crear las funciones nativas.<br>Luego recorremos por primera vez nuestras instrucciones en búsqueda de funciones para declararlas, pero solamente funciones no otra instrucción.<br>Luego recorremos por segunda vez nuestras instrucciones y las ejecutamos utilizando el siempre confiable método interpretar obtenido gracias a nuestra clase abstracta AST. Específicamente con el método EjecutarInstrucciones, de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/interpretejavacc/UIController.java">UIController</a>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">private void EjecutarInstrucciones(Arbol tree) &#123;</span><br><span class="line">    tree.setConsola(consola);</span><br><span class="line">    tree.setGrupo(groupChart);</span><br><span class="line">    Tabla tabla = new Tabla(null);</span><br><span class="line">    tree.setGlobal(tabla);</span><br><span class="line">    crearNativas(tabla);</span><br><span class="line">    // Recorrido 1 para insertar funciones</span><br><span class="line">    tree.getInstrucciones().forEach(m -&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (m instanceof Funcion) &#123;</span><br><span class="line">            tabla.setFuncion((Funcion) m);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    tree.getInstrucciones().forEach(m -&gt; &#123;</span><br><span class="line">        if (!(m instanceof Funcion)) &#123;</span><br><span class="line">            Object result = m.interpretar(tabla, tree);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (result instanceof Excepcion) &#123;</span><br><span class="line">                ((Excepcion) result).imprimir(tree.getConsola());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (result instanceof Detener) &#123;</span><br><span class="line">                Excepcion ex = new Excepcion(<span class="string">&quot;Semantico&quot;</span>, <span class="string">&quot;Sentencia break fuera de ciclo.&quot;</span>, m.fila, m.columna);</span><br><span class="line">                tree.getExcepciones().add(ex);</span><br><span class="line">                ex.imprimir(tree.getConsola());</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (result instanceof Retorno) &#123;</span><br><span class="line">                Excepcion ex = new Excepcion(<span class="string">&quot;Semantico&quot;</span>, <span class="string">&quot;Sentencia retorno fuera de funcion.&quot;</span>, m.fila, m.columna);</span><br><span class="line">                tree.getExcepciones().add(ex);</span><br><span class="line">                ex.imprimir(tree.getConsola());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    tree.getExcepciones().forEach(m -&gt; &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;&quot;</span> + m.toString());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Iniciando-funciones-nativas"><a href="#Iniciando-funciones-nativas" class="headerlink" title="Iniciando funciones nativas"></a><strong>Iniciando funciones nativas</strong></h3><p>Para las funciones nativas recordemos deben ser creadas antes de iniciar la ejecución de nuestro interprete. Esta creación de las funciones nativas se encuentra en clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloJavaCC/blob/master/src/interpretejavacc/UIController.java">UIController</a>, específicamente en el método crearNativas:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void crearNativas(Tabla t)&#123;</span><br><span class="line">    Tipo tipo = new Tipo(Tipo.Tipos.CADENA);</span><br><span class="line">    String nombre = <span class="string">&quot;toUpper&quot;</span>;</span><br><span class="line">    ArrayList&lt;AST&gt; parametros = new ArrayList&lt;&gt;();</span><br><span class="line">    parametros.add(new Declaracion(tipo, <span class="string">&quot;toUpper%%parametro1&quot;</span>, null, -1, -1));</span><br><span class="line">    ArrayList&lt;AST&gt; instrucciones = new ArrayList&lt;&gt;();</span><br><span class="line">    aMayuscula am = new aMayuscula(tipo, nombre, parametros, instrucciones, -1, -1);</span><br><span class="line">    t.setFuncion(am);</span><br><span class="line">    </span><br><span class="line">    tipo = new Tipo(Tipo.Tipos.CADENA);</span><br><span class="line">    nombre = <span class="string">&quot;pie&quot;</span>;</span><br><span class="line">    parametros = new ArrayList&lt;&gt;();</span><br><span class="line">    parametros.add(new Declaracion(new Tipo(Tipos.LISTA), <span class="string">&quot;pie%%parametro1&quot;</span>, null, -1, -1));</span><br><span class="line">    parametros.add(new Declaracion(new Tipo(Tipos.LISTA), <span class="string">&quot;pie%%parametro2&quot;</span>, null, -1, -1));</span><br><span class="line">    parametros.add(new Declaracion(new Tipo(Tipos.CADENA), <span class="string">&quot;pie%%parametro3&quot;</span>, null, -1, -1));</span><br><span class="line">    instrucciones = new ArrayList&lt;&gt;();</span><br><span class="line">    pieChart pc = new pieChart(tipo, nombre, parametros, instrucciones, -1, -1);</span><br><span class="line">    t.setFuncion(pc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Como observamos aquí creamos las funciones nativas de toUpper y pie que mencionamos al inicio. Además los parámetros tienen un nombre especial para que no se confundan con otras variables, al terminar de crearlas las agregamos a nuestra lista de funciones.</p>
+<p>Una vez explicado esto procedemos a ejecutar nuestro programa, vemos que contamos con un boton para ejecutar y 2 pestañas, 1 de consola y la otra donde se muestran nuestras graficas:</p>
+
+
+<p>Agregamos y ejecutamos la entrada proporcionada que produce lo siguiente en la sección de la consola:</p>
+
+
+<p>Y en la sección de grafica:</p>
+
+
+<p>Con esto damos por finalizado la explicación de este pequeño proyecto.</p>
+<h4 id="Conclusiones"><a href="#Conclusiones" class="headerlink" title="Conclusiones"></a><strong>Conclusiones</strong></h4><ul>
+<li>Como pudimos observar el desarrollo de un interprete es largo, pero a su vez es ordenado.</li>
+<li>Las gramáticas en javaCC pueden ser poco legibles pero altamente sencillas de crear.</li>
+<li><strong>Dry, don’t repeat yourself</strong>: si usamos esta filosofía podemos reducir la cantidad de código hecho, por ejemplo en nuestra clase abstracta agregamos código común para todas las clases que la heredan, o con las funciones nativas únicamente heredamos de algo que ya existía, hay que tratar en la manera de lo posible reutilizar el código existente. </li>
+<li>Algo que no se explico porque no era parte del tutorial, pero que es muy útil fue que la interfaz esta hecha en JavaFX, esta nos proporciona una manera más sencilla de utilizar los componentes de la interfaz con nuestra lógica utilizando el modelo MVC.</li>
+<li>La utilización de estados en JavaCC nos puede ayudar en casos donde necesitemos crear tokens más complejos.</li>
+</ul>
+<h3 id="Acerca-del-autor"><a href="#Acerca-del-autor" class="headerlink" title="Acerca del autor:"></a><strong>Acerca del autor:</strong></h3><p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a target="_blank" rel="noopener" href="https://github.com/PvasquezF">Pavel Vásquez</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<h3 id="Fuentes-consultadas"><a href="#Fuentes-consultadas" class="headerlink" title="Fuentes consultadas:"></a><strong>Fuentes consultadas:</strong></h3><ul>
+<li>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-08-07T21:01:14.000Z" title="8/7/2019, 3:01:14 PM">2019-08-07</time></span><span class="level-item"> Erick Navarro </span><span class="level-item"><a class="link-muted" href="/categories/Computer-Science/">Computer Science</a><span> / </span><a class="link-muted" href="/categories/Computer-Science/Compilers/">Compilers</a></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/08/07/22-Interprete-sencillo-utilizando-Irony-con-CS/">Intérprete sencillo utilizando Irony y C#</a></p><div class="content"><p>En este tutorial se desarrolla un intérprete sencillo que permite ejecutar un archivo de entrada que contiene sentencias tales como declaración de variables, sentencias de control, impresiones en consola, etc. El lenguaje de programación fue diseñado especialmente para este ejemplo. El proyecto cuenta con comentarios que explican su funcionamiento.</p>
+<p>Las tecnologías a utilizar son:</p>
+<ul>
+<li><strong>Irony</strong>: Generador de analizadores léxicos y sintácticos que retorna un AST (Abstract Syntax Tree).</li>
+<li><strong>Visual Studio 2017</strong>: Entorno de desarrollo integrado utilizado para programar en C#.</li>
+<li><strong>Windows 10</strong>: Sistema Operativo.</li>
+<li><strong>Irony.dll</strong>: DLL que permite la integración de Irony con C#.</li>
+</ul>
+<p>El proyecto completo de este ejemplo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS">Intérprete Sencillo Utilizando Irony</a></li>
+</ul>
+<p>Si desean una pequeña introducción a Irony pueden revisar el post:</p>
+<ul>
+<li><a href="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/" title="Mi primer proyecto utilizando Irony">Mi primer proyecto utilizando Irony</a></li>
+</ul>
+<p>En el que se explica paso a paso como utilizar esta herramienta.</p>
+<h3 id="El-lenguaje-de-entrada"><a href="#El-lenguaje-de-entrada" class="headerlink" title="El lenguaje de entrada"></a><strong>El lenguaje de entrada</strong></h3><p>Dentro de la <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/tree/master/InterpreteSencillo/InterpreteSencillo">carpeta del proyecto</a> podremos acceder a <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/tree/master/InterpreteSencillo/InterpreteSencillo/input">&#x2F;input</a> y allí encontraremos un archivo de entrada llamado <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/blob/master/InterpreteSencillo/InterpreteSencillo/input/entrada.txt">“entrada.txt”</a>, en él se muestran ejemplos de todas las funciones del lenguaje diseñado para esta aplicación, al leerlo se puede tener una idea clara de las funciones con las que el lenguaje cuenta, este archivo contiene lo siguiente:</p>
+<ul>
+<li>   Comentarios simples, es decir de una sola línea (&#x2F;&#x2F;)</li>
+<li>   Comentarios múltiples, es decir de más de una línea (&#x2F;* *&#x2F;)</li>
+<li>   Concatenación de cadenas, mediante el operador <em>&amp;</em></li>
+<li>   Función Imprimir: Recibe como parámetro una cadena e imprime su valor en consola.</li>
+<li>   Declaración de variables: Únicamente se acepta definición de variables de tipo <em>numero</em> incluyendo enteros y decimales.</li>
+<li>   Asignación de variables: A cualquier variable se le puede asignar cualquier expresión que tenga como resultado un número.</li>
+<li>   Instrucción Mientras: Tiene el comportamiento clásico del ciclo while, ejecuta el ciclo mientras la expresión booleana que recibe sea verdadera. Esta instrucción soporta anidamiento. </li>
+<li>   Instrucción If e If-Else: Tiene el comportamiento clásico de las sentencias de selección If e If-Else, evalúa la expresión booleana y ejecuta el bloque de instrucciones en If si es verdadera. En caso contrario y si existe un bloque Else se ejecuta este bloque de instrucciones. Estas instrucciones también soportan anidamiento.</li>
+<li>   Expresiones aritméticas: Se soportan las expresiones aritméticas binarias: suma, resta, multiplicación y división. También la expresión unaria: negación. Adicionalmente se soporta expresiones agrupadas en paréntesis. Se maneja la precedencia habitual de las expresiones aritméticas.</li>
+<li>   Expresiones booleanas: Comparan dos expresiones que tengan como resultado un número y soportan unicamente los operados <em>mayor que</em> y <em>menor que</em> (&lt;, &gt;).</li>
+</ul>
+<p><strong>El resultado de la ejecución</strong><br>Al ejecutar la entrada mostrada en nuestro ejemplo, esta fue la salida obtenida:</p>
+
+
+<h3 id="Tabla-de-simbolos"><a href="#Tabla-de-simbolos" class="headerlink" title="Tabla de símbolos"></a><strong>Tabla de símbolos</strong></h3><p>La <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/blob/master/InterpreteSencillo/InterpreteSencillo/arbol/TablaDeSimbolos.cs">tabla de símbolos</a> es una parte importante en el proceso de ejecución del código, es en esta estructura de datos en donde guardamos información de las variables como su tipo, identificador y valor. En esta estructura podemos agregar variables, modificar los valores de las variables existentes, así como obtener sus valores.</p>
+<h3 id="Entornos"><a href="#Entornos" class="headerlink" title="Entornos"></a><strong>Entornos</strong></h3><p>El manejo de entornos es sumamente importante ya que deberíamos de crear un nuevo entorno por cada alcance, de manera que los entornos superiores no tengan acceso a las variables declaradas en entornos inferiores pero los entornos inferiores puedan acceder tanto a sus variables como a las de los entornos superiores, esto funciona de manera muy similar a una pila, ya que el ultimo entorno creado debería ser el primero en ser eliminado.</p>
+<p>En este ejemplo, esto se logra mediante el creando una tabla local para cada sentencia ejecutada que posea un ámbito propio, como el If, While, etc. Luego de crear la tabla local se agregan todos los símbolos de la tabla del ámbioto padre y se utiliza esta tabla local como tabla principal, al terminar de ejecutar la sentencia esta tabla local desaparece, pues fue declarada dentro de la sentencia que se ejecuta.</p>
+<h3 id="Arbol-de-analisis-abstracto-AST"><a href="#Arbol-de-analisis-abstracto-AST" class="headerlink" title="Árbol de análisis abstracto AST"></a><strong>Árbol de análisis abstracto AST</strong></h3><p>Un árbol de sintaxis abstracta (AST) es una representación simplificada de la estructura sintáctica del código fuente. A nivel de programación un AST es una estructura de datos que se genera durante el proceso de análisis sintáctico.<br>En el código de Irony lo vamos armando por medio de listas de instrucciones, donde cada sentencia es una instrucción y en el bloque contenido en esta sentencia tendríamos otra lista de instrucciones, armando así un árbol en donde cada nodo es un objeto que implementa la interfaz instrucción y puede contener múltiples hijos que serían otros objetos que implementan la interfaz instrucción, que serían otras instrucciones.</p>
+<p>El código de nuestro proyecto está organizado en dos paquetes:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/tree/master/InterpreteSencillo/InterpreteSencillo/analizador">analizador</a>: que contiene los archivos de Irony.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/tree/master/InterpreteSencillo/InterpreteSencillo/arbol">arbol</a>: que contiene todas las clases que forman parte del AST, que se utiliza como estructura primaria en la aplicación.</li>
+</ul>
+<p>Teniendo únicamente una clase afuera que seria la clase principal de la aplicación <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/InterpreteSencilloIronyCS/blob/master/InterpreteSencillo/InterpreteSencillo/Program.cs">Program.cs</a>.</p>
+<h3 id="Acerca-del-autor"><a href="#Acerca-del-autor" class="headerlink" title="Acerca del autor:"></a><strong>Acerca del autor:</strong></h3><p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a target="_blank" rel="noopener" href="https://github.com/201504481">Julio Arango</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<h3 id="Fuentes-consultadas"><a href="#Fuentes-consultadas" class="headerlink" title="Fuentes consultadas:"></a><strong>Fuentes consultadas:</strong></h3><ul>
+<li>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-07-24T14:21:58.000Z" title="7/24/2019, 8:21:58 AM">2019-07-24</time></span><span class="level-item"> Erick Navarro </span><span class="level-item"><a class="link-muted" href="/categories/Computer-Science/">Computer Science</a><span> / </span><a class="link-muted" href="/categories/Computer-Science/Compilers/">Compilers</a></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/07/24/19-Mi-primer-proyecto-utilizando-Irony-Windows/">Mi primer proyecto utilizando Irony</a></p><div class="content"><p>Se desarrollará un intérprete que recibe como entrada varias expresiones aritméticas y presenta como salida el resultado de dichas expresiones evaluadas.</p>
+<p>Las tecnologías a utilizar son:</p>
+<ul>
+<li><strong>Irony</strong>: Generador de analizadores léxicos y sintácticos que retorna un AST (Abstract Syntax Tree).</li>
+<li><strong>Visual Studio 2017</strong>: Entorno de desarrollo integrado utilizado para programar en C#.</li>
+<li><strong>Windows 10</strong>: Sistema Operativo.</li>
+<li><strong>Irony.dll</strong>: DLL que permite la integración de Irony con C#.</li>
+</ul>
+<p>El proyecto completo puede descargarse del siguiente enlace:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS">Mi primer proyecto utilizando Irony</a></li>
+</ul>
+<h3 id="Irony"><a href="#Irony" class="headerlink" title="Irony"></a><strong>Irony</strong></h3><p><a target="_blank" rel="noopener" href="https://archive.codeplex.com/?p=irony">Irony</a> es un kit de desarrollo para implementar lenguajes en la plataforma .NET. A diferencia de la mayoría de las soluciones de estilo yacc &#x2F; lex existentes, Irony no emplea ninguna generación de scanner (analizador léxico) o parser (analizador sintáctico) a partir de especificaciones gramaticales escritas en un meta-lenguaje especializado. En Irony, la gramática del lenguaje se codifica directamente en C# utilizando la sobrecarga de operadores para expresar construcciones gramaticales. Los módulos de scanner y parser de Irony utilizan la gramática codificada como una clase de C# para controlar el proceso de análisis. En la página principal de <a target="_blank" rel="noopener" href="https://archive.codeplex.com/?p=irony">Irony</a>, se anuncia que el proyecto se ha movido a un <a target="_blank" rel="noopener" href="https://github.com/IronyProject/">repositorio en GitHub</a>.</p>
+<h3 id="Analizador-lexico-Scanner"><a href="#Analizador-lexico-Scanner" class="headerlink" title="Analizador léxico (Scanner)"></a><strong>Analizador léxico (Scanner)</strong></h3><p>La principal tarea de un analizador léxico es leer los caracteres de entrada del programa fuente, agruparlos en lexemas y producir como salida una secuencia de tokens.</p>
+<ul>
+<li><p>Un <em>token</em> es un par que consiste en un nombre de token y un valor de atributo opcional.</p>
+</li>
+<li><p>Un <em>lexema</em> es una secuencia de caracteres en el programa fuente, que coinciden con el patrón para un token y que el analizador léxico identifica como una instancia de este tóken.</p>
+</li>
+<li><p>Un <em>patrón</em> es una descripción de la forma que pueden tomar los lexemas de un token.</p>
+</li>
+</ul>
+<h3 id="Analizador-sintactico-Parser"><a href="#Analizador-sintactico-Parser" class="headerlink" title="Analizador sintáctico (Parser)"></a><strong>Analizador sintáctico (Parser)</strong></h3><p>El analizador sintáctico obtiene una cadena de tokens del analizador léxico y verifica que dicha cadena pueda generarse con la gramática para el lenguaje fuente. Una gramática proporciona una especificación precisa y fácil de entender de un lenguaje de programación.</p>
+<h3 id="Pre-requisitos"><a href="#Pre-requisitos" class="headerlink" title="Pre-requisitos"></a><strong>Pre-requisitos</strong></h3><ul>
+<li><strong>Obtención del archivo <a target="_blank" rel="noopener" href="https://archive.codeplex.com/?p=irony">Irony.DDL</a></strong></li>
+</ul>
+<p>El <a target="_blank" rel="noopener" href="https://github.com/IronyProject/">proyecto de Irony</a> anteriormente mencionado es un proyecto de C#, el cual contiene la aplicación de Irony, sin embargo, a nosotros únicamente nos interesa las librerías que este proyecto genera, para obtener dichas librerías debemos seguir los siguientes pasos: </p>
+<ol>
+<li>   Descargar el repositorio completo de Irony desde <a target="_blank" rel="noopener" href="https://github.com/IronyProject/Irony/">GitHub</a>.</li>
+</ol>
+
+
+<ol start="2">
+<li>Descomprimimos el repositorio e ingresamos a la carpeta <em>Irony.Interpreter</em></li>
+</ol>
+
+
+<ol start="3">
+<li>   Dentro de la carpeta <em>Irony.Interpreter</em>, encontraremos el proyecto <em>015.Irony.Interpreter.csproj</em>, debemos abrir este proyecto con Visual Studio.</li>
+</ol>
+
+
+<ol start="4">
+<li>   Al tener abierto el proyecto en Visual Studio, procedemos a dar click derecho en el nombre del proyecto → “Build Solution” en el nombre del .</li>
+</ol>
+
+
+<ol start="5">
+<li>   Luego de haber ejecutado exitosamente la opción “Build Solution” se creará la carpeta <em>bin&#x2F;Debug</em> dentro de la carpeta del proyecto <em>Irony.Interpreter</em>. Encontraremos en esta carpeta generada dos carpetas: <em>net40</em>, <em>netstandard2.0</em>. Nosotros escogeremos la carpeta <em>net40</em>, que corresponde a .NET Framework 4.0, nosotros escogeremos esta que sería la versión más reciente, que además es compatible con el proyecto que crearemos en Visual Studio 2017.</li>
+</ol>
+
+
+<ol start="6">
+<li>   Dentro de la carpeta <em>net40</em> encontraremos el archivo Irony.dll, que utilizaremos en nuestro proyecto.</li>
+</ol>
+
+
+<ul>
+<li><strong>Creación del proyecto en el que utilizaremos Irony</strong></li>
+</ul>
+<ol>
+<li>Abrimos Visual Studio y seleccionamos la opción “File” → “New” → “Project…”.</li>
+</ol>
+
+
+<ol start="2">
+<li>Una vez abierto el wizard para crear nuevos proyectos seleccionamos el apartado “Visual C#” → “Windows Desktop” → “Console App (.NET Framework)” y le pondremos como nombre ProyectoIronyCS.</li>
+</ol>
+
+
+<ol start="3">
+<li>Posteriormente creamos una carpeta lib dentro de nuestro proyecto, para ello vamos al explorador de soluciones y hacemos click derecho en el nombre del proyecto, “Add” → “New Folder”. En la carpeta <em>lib</em> recién creada, pegamos el archivo <em>Irony.dll</em> anteriormente generado.</li>
+</ol>
+
+
+<ol start="4">
+<li>Luego de pegar el archivo <em>Irony.dll</em>, volvemos al explorador de soluciones y damos click derecho en la carpeta <em>lib</em>, “Add” → “Existing Item…”.</li>
+</ol>
+
+
+<ol start="5">
+<li>Buscamos el archivo <em>Irony.dll</em> que acabamos de pegar en la carpeta <em>lib</em> y lo agregamos.</li>
+</ol>
+
+
+<ol start="6">
+<li>Importamos la librería <em>Irony.dll</em> que acabamos de pegar en nuestra carpeta <em>lib</em>, para hacerlo daremos click derecho en “References” → “Add Reference…”</li>
+</ol>
+
+
+<ol start="7">
+<li>Esto nos desplegara una nueva ventana, seleccionamos la opción “Browse…” y seleccionamos nuestro archivo .dll y daremos click en aceptar.</li>
+</ol>
+
+
+<ul>
+<li><strong>Creación de la gramática</strong></li>
+</ul>
+<ol>
+<li>La creación de la gramática se realiza por medio de un archivo .cs, para ello agregaremos primero una carpeta a la solución con el nombre de analizador, esto no es completamente necesario, lo hacemos para tener el código organizado.<br>Para crear la carpeta es clic derecho sobre el nombre de nuestro proyecto en el explorador de soluciones. “Add” → “New Folder”, le asignamos el nombre “analizador”.</li>
+</ol>
+
+<ol start="2">
+<li>Dentro de la carpeta creamos una nueva clase de nombre <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs">“Gramatica”</a> que contendrá toda la gramática para Irony, para ello hacemos click derecho sobre la carpeta “Add” → “Class”.</li>
+</ol>
+
+
+<hr>
+
+
+<ol start="3">
+<li>En la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs">“Gramatica”</a> incorporamos el código de la gramática correspondiente a este ejemplo, dicho código puede consultarse en el <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs">repositorio</a>.</li>
+</ol>
+<ul>
+<li><strong>Explicación de la gramática creada</strong></li>
+</ul>
+<p>A continuación se explican los principales elementos de la clase gramática:</p>
+<ul>
+<li>Se importan las librerías de Irony a utilizar</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">using Irony.Ast;</span><br><span class="line">using Irony.Parsing;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Nos aseguramos de que la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs">“Gramatica”</a> herede de la clase “Grammar” de Irony.Parsing.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Gramatica : Grammar</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Una de las principales características de Irony es poder organizar todo en regiones, para crear una región se debe escribir el nombre de la región de la siguiente manera:</p>
+<ul>
+<li>Se comienza la región con “#region ” seguido del nombre de la región </li>
+<li>Se finaliza la región con “#endregion”</li>
+</ul>
+</li>
+<li><p>Para la gramática anterior se definen las siguientes regiones:</p>
+<ul>
+<li>ER: Expresiones regulares de los tokens que nuestra gramática reconocerá.</li>
+<li>Terminales: Conjunto de terminales que serán utilizados en nuestra gramática, que no fueron aceptados por ninguna de las expresiones regulares definidas anteriormente.</li>
+<li>No terminales: Conjunto de no terminales que serán utilizados en nuestra gramática.</li>
+<li>Gramática: Región donde se define la gramática. </li>
+<li>Preferencia: Configuraciones especiales necesarias para el uso de Irony.</li>
+</ul>
+</li>
+<li><p>La gramática debe reconocer números enteros y decimales, por lo que creamos las expresiones regulares para reconocer estos tokens. Para ello se crean objetos del tipo “RegexBasedTerminal”, el cual recibirá de parámetros: el nombre con que se va a reducir y la expresión regular a cumplir.</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var NUMERO = new NumberLiteral(<span class="string">&quot;Numero&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Posteriormente se escriben los terminales, para estos no es necesario escribir expresiones regulares pues son caracteres simples o bien palabras reservadas por esta razón es que no se incluyeron en la región ER. Para definir los terminales se crean variables instanciadas con la función “ToTerm”, que recibe de parámetro el símbolo terminal con el que debe de cumplir, para el ejemplo se definieron los siguientes:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var REVALUAR = ToTerm(<span class="string">&quot;Evaluar&quot;</span>);</span><br><span class="line">var PTCOMA = ToTerm(<span class="string">&quot;;&quot;</span>);</span><br><span class="line">var PARIZQ = ToTerm(<span class="string">&quot;(&quot;</span>);</span><br><span class="line">var PARDER = ToTerm(<span class="string">&quot;)&quot;</span>);</span><br><span class="line">var CORIZQ = ToTerm(<span class="string">&quot;[&quot;</span>);</span><br><span class="line">var CORDER = ToTerm(<span class="string">&quot;]&quot;</span>);</span><br><span class="line">var MAS = ToTerm(<span class="string">&quot;+&quot;</span>);</span><br><span class="line">var MENOS = ToTerm(<span class="string">&quot;-&quot;</span>);</span><br><span class="line">var POR = ToTerm(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">var DIVIDIDO = ToTerm(<span class="string">&quot;/&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Se agrega precedencia a los operadores aritméticos, esto se hace con la función “RegisterOperators” que recibe como parámetro el nivel de precedencia y la lista de terminales que corresponde a dicho nivel.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RegisterOperators(1, MAS, MENOS);</span><br><span class="line">RegisterOperators(2, POR, DIVIDIDO);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Se crean los No Terminales para nuestra gramática, para esta declaración se deben crear objetos de tipo “NonTerminal” que en su constructor recibe de parámetro el nombre del no terminal.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NonTerminal ini = new NonTerminal(<span class="string">&quot;ini&quot;</span>);</span><br><span class="line">NonTerminal instruccion = new NonTerminal(<span class="string">&quot;instruccion&quot;</span>);</span><br><span class="line">NonTerminal instrucciones = new NonTerminal(<span class="string">&quot;instrucciones&quot;</span>);</span><br><span class="line">NonTerminal expresion = new NonTerminal(<span class="string">&quot;expresion&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Con lo anterior definido, se crea la gramática, para ello es importante resaltar los siguientes puntos:</p>
+<ul>
+<li>Toda producción debe iniciar con el nombre de algún no terminal previamente declarado y el atributo Rule “Produccion.Rule”.</li>
+<li>Se finalizan las producciones con punto y coma.</li>
+<li>Se pueden tener diferentes producciones en un solo no terminal, para ello cada una de ellas se separa con un “|”.</li>
+<li>Para concatenar terminales o no terminales a la producción se debe usar siempre el signo “+”.</li>
+</ul>
+</li>
+<li><p>Gramática utilizada:</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ini.Rule = instrucciones;</span><br><span class="line"></span><br><span class="line">instrucciones.Rule = instruccion + instrucciones</span><br><span class="line">    | instruccion;</span><br><span class="line"></span><br><span class="line">instruccion.Rule = REVALUAR + CORIZQ + expresion + CORDER + PTCOMA;</span><br><span class="line"></span><br><span class="line">expresion.Rule = MENOS + expresion</span><br><span class="line">    | expresion + MAS + expresion</span><br><span class="line">    | expresion + MENOS + expresion</span><br><span class="line">    | expresion + POR + expresion</span><br><span class="line">    | expresion + DIVIDIDO + expresion</span><br><span class="line">    | NUMERO</span><br><span class="line">    | PARIZQ + expresion + PARDER;</span><br></pre></td></tr></table></figure>
+
+<p>Para finalizar, es necesario declarar nuestra producción de inicio, para ello asignamos al atributo Root el no terminal con el cual comenzara nuestra gramática.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.Root = ini;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Recorrido del AST</strong></li>
+</ul>
+<p>Para realizar este recorrido se crea la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs">“Sintactico”</a> dentro de la carpeta analizador, tal como creamos la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs">“Gramatica”</a>:</p>
+
+
+<p>El código de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs">“Sintactico”</a>, puede consultarse en el <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs">repositorio</a>.</p>
+<p>A continuación analizaremos el contenido de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs">“Sintactico”</a>, pero antes de continuar es necesario tener presentes los siguientes conceptos de Irony:</p>
+<ul>
+<li><em>ParseTree</em>: AST devuelto por Irony que será posteriormente recorrido y analizado.</li>
+<li><em>ParseTreeNode</em>: Cada uno de los nodos del <em>ParseTree</em>, el atributo mas importante de este nodo es:<ul>
+<li><em>ChildNodes</em>: Atributo de cada <em>ParseTreeNode</em>, este atributo es de tipo Array y contiene todas las cualidades de una lista, tales como Count, ElementAt, etc. Si esta lista esta vacía significa que el nodo es un nodo hoja, caso contrario es un subárbol.</li>
+</ul>
+</li>
+</ul>
+<p>Como ya hemos mencionado, Irony no acepta acciones entre sus producciones, se limita a devolver el AST (Abstract Syntax Tree) que arma luego de ser aceptada la cadena de entrada.</p>
+<p>Dentro de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs">“Sintactico”</a>, podemos encontrar el método analizar para cargar el árbol y disparar el recorrido de dicho árbol a través de una llamada al método instrucciones a la que se le manda el nodo raíz del árbol.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void analizar(String cadena)</span><br><span class="line">&#123;</span><br><span class="line">    Gramatica gramatica = new Gramatica();</span><br><span class="line">    LanguageData lenguaje = new LanguageData(gramatica);</span><br><span class="line">    Parser parser = new Parser(lenguaje);</span><br><span class="line">    ParseTree arbol = parser.Parse(cadena);</span><br><span class="line">    ParseTreeNode raiz = arbol.Root;</span><br><span class="line"></span><br><span class="line">    instrucciones(raiz.ChildNodes.ElementAt(0));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>En el método tenemos lo siguiente:</p>
+<ol>
+<li>   Declarar un objeto de la clase que contiene nuestra gramática, en este caso será un objeto de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Gramatica.cs">“Gramatica”</a>.</li>
+<li>   Crear un objeto de la clase “LanguageData”, el cual recibirá de parámetro la variable de nuestra gramática.</li>
+<li>   Crear un objeto de la clase “Parser”, el cual recibirá de parámetro la variable de la clase “LenguageData”.</li>
+<li>   Obtener el AST (Abstract Syntax Tree) de la entrada procesada creando un objeto de la clase “ParseTree”.</li>
+<li>   Obtener la raíz del árbol con el atributo “root” del ParseTree, este es un objeto de tipo “ParseTreeNode” y contiene toda la información del nodo, en este caso el nodo raíz.</li>
+<li>   Invocar el método instrucciones enviándole como parámetro el nodo raíz del AST.</li>
+</ol>
+<p>Para recorrer el AST (Abstract Syntax Tree) es importante comprender cómo está armado según la gramática definida. Para la entrada: “Evaluar[1+1];”, por ejemplo, el árbol que arma nuestra gramática es:</p>
+
+
+<p>Analizando la imagen con la estructura del árbol tenemos que:</p>
+<ul>
+<li>Los No terminales se guardan en el nodo únicamente con el nombre que se les dio para reducir al momento de declararlos.</li>
+<li>Los Terminales se guardan junto a un Keyword.</li>
+<li>Los Token dados con expresiones regulares, guardan el valor original con que coincidió la ER, seguido del nombre que se le dio para reducir.</li>
+</ul>
+<p>Teniendo lo anterior en cuenta creamos dentro de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/analizador/Sintactico.cs">“Sintactico”</a> un set de funciones representativas para cada producción, estas siempre recibirán como  parámetro el nodo padre y usaran la información almacenada en los nodos para ejecutar las acciones correspondientes.</p>
+<ul>
+<li><em>Para las producciones del no terminal “instrucciones”, tenemos la siguiente función:</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void instrucciones(ParseTreeNode actual) &#123;</span><br><span class="line">    <span class="keyword">if</span> (actual.ChildNodes.Count == 2)</span><br><span class="line">    &#123;</span><br><span class="line">        instruccion(actual.ChildNodes.ElementAt(0));</span><br><span class="line">        instrucciones(actual.ChildNodes.ElementAt(1));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        instruccion(actual.ChildNodes.ElementAt(0));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>En nuestra gramática, el no terminal “instrucciones”, contaba con 2 posibles producciones, una en la cual tenia dos hijos y en la otra solamente uno, con esta información y usando la propiedad ChildNodes, hacemos el recorrido de esa producción, haciendo llamadas a otras funciones según el no terminal encontrado.</p>
+<ul>
+<li><em>Para la producción del no terminal “instruccion”, tendremos la siguiente función:</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void instruccion(ParseTreeNode actual) &#123;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;El valor de la expresion es: &quot;</span> + expresion(actual.ChildNodes.ElementAt(2)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Este no terminal posee solamente una producción, por lo cual no es necesario evaluar condiciones para determinar qué método debe ejecutar posteriormente. Este método imprime “El valor de la expresión es:”, seguido del resultado que nos devuelve la llamada a expresión.</p>
+<ul>
+<li><em>Para la producción de “expresion”, tendremos la siguiente función:</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public double expresion(ParseTreeNode actual) &#123;</span><br><span class="line">    <span class="keyword">if</span> (actual.ChildNodes.Count == 3) &#123;</span><br><span class="line">        string tokenOperador = actual.ChildNodes.ElementAt(1).ToString().Split(<span class="string">&#x27; &#x27;</span>)[0];</span><br><span class="line">        switch (tokenOperador) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;+&quot;</span>:</span><br><span class="line">                <span class="built_in">return</span> expresion(actual.ChildNodes.ElementAt(0))  + expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                <span class="built_in">return</span> expresion(actual.ChildNodes.ElementAt(0)) - expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;*&quot;</span>:</span><br><span class="line">                <span class="built_in">return</span> expresion(actual.ChildNodes.ElementAt(0)) * expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;/&quot;</span>:</span><br><span class="line">                <span class="built_in">return</span> expresion(actual.ChildNodes.ElementAt(0)) / expresion(actual.ChildNodes.ElementAt(2));</span><br><span class="line">            default:</span><br><span class="line">                <span class="built_in">return</span> expresion(actual.ChildNodes.ElementAt(1));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (actual.ChildNodes.Count == 2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> -1 * expresion(actual.ChildNodes.ElementAt(1));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">return</span> Double.Parse(actual.ChildNodes.ElementAt(0).ToString().Split(<span class="string">&#x27; &#x27;</span>)[0]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Como en los casos anteriores, debemos plantear condiciones para determinar qué producción se está reconociendo, estas condiciones pueden basarse en la cantidad de hijos de la producción.</p>
+<ul>
+<li><p>Si tiene un hijo se trata de un número entero o decimal, por lo cual retornamos únicamente el valor del número.</p>
+</li>
+<li><p>Si tiene dos hijos es la producción de “menos &lt;expresión&gt;” por lo cual multiplicamos el valor de la expresión por menos uno.</p>
+</li>
+<li><p>Si tiene 3 hijos puede tratarse de una suma, resta, multiplicación o división, para determinar de cuál se trata, recogemos el valor del hijo de en medio que contiene el operador y ejecutamos según corresponda, esto se hace dentro de la sentencia switch del método.</p>
+</li>
+<li><p><strong>Interpretación del archivo de entrada</strong></p>
+</li>
+</ul>
+<p>Esta interpretación se ejecuta dentro del método Main de la clase <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/Program.cs">“Program”</a> que se creo automáticamente en nuestro proyecto.</p>
+<p>En esta clase se importa la referencia a la carpeta analizador para poder usar la clase Sintactico recién creada:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using ProyectoIronyCS.sol.com.analizador;</span><br></pre></td></tr></table></figure>
+
+<p>Y en el método Main encontramos lo siguiente:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string text = System.IO.File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @<span class="string">&quot;..\..\input&quot;</span>, <span class="string">&quot;entrada.txt&quot;</span>));</span><br><span class="line">Sintactico sintac = new Sintactico();</span><br><span class="line">sintac.analizar(text);</span><br></pre></td></tr></table></figure>
+
+<p>Estos comandos realizan las siguientes acciones:</p>
+<ol>
+<li>Cargar el contenido del archivo <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/input/entrada.txt">“entrada.txt”</a> que debe ser creado dentro de la carpeta <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/tree/master/ProyectoIronyCS/input"><em>&#x2F;input</em></a> que también debemos crear dentro de nuestro proyecto.</li>
+<li>Crear el analizador sintáctico a utilizar</li>
+<li>Analizar el texto del archivo de entrada</li>
+</ol>
+<p>El archivo de <a target="_blank" rel="noopener" href="https://github.com/ericknavarro/ProyectoIronyCS/blob/master/ProyectoIronyCS/input/entrada.txt">“entrada.txt”</a> tiene el siguiente contenido:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Evaluar[1+1];</span><br><span class="line">Evaluar[1+1*2];</span><br><span class="line">Evaluar[-(1+1*6/3-5+7)];</span><br><span class="line">Evaluar[-(1+1*6/3-5+1*-2)];</span><br><span class="line">Evaluar[-(1+1)];</span><br></pre></td></tr></table></figure>
+
+<p>Y tras analizarlo con nuestra solución genera la siguiente salida:</p>
+
+
+<p>Como podemos ver, obtenemos la salida esperada.</p>
+<p>Y el AST que formaría dicha entrada sería:</p>
+
+
+<h3 id="Acerca-del-autor"><a href="#Acerca-del-autor" class="headerlink" title="Acerca del autor:"></a><strong>Acerca del autor:</strong></h3><p>Este tutorial fue elaborado por el Auxiliar de Cátedra <a target="_blank" rel="noopener" href="https://github.com/201504481">Julio Arango</a>, como contribución al curso de Organización de Lenguajes y Compiladores 2 de la Universidad de San Carlos de Guatemala.</p>
+<h3 id="Fuentes-consultadas"><a href="#Fuentes-consultadas" class="headerlink" title="Fuentes consultadas:"></a><strong>Fuentes consultadas:</strong></h3><p>Compiladores, principios, técnicas y herramientas. Aho, Lam, Sethi y Ullman. Segunda Edición.</p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Erick Navarro"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Erick Navarro</p><p class="is-size-6 is-block">Data Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Guatemala</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://www.linkedin.com/in/ericknd/" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ericknavarro"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="LinkedIn" href="https://www.linkedin.com/in/ericknd/"><i class="fab fa-linkedin"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AWS/"><span class="level-start"><span class="level-item">AWS</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/AWS/Alexa-Skills/"><span class="level-start"><span class="level-item">Alexa Skills</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/CloudFront/"><span class="level-start"><span class="level-item">CloudFront</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/EC2/"><span class="level-start"><span class="level-item">EC2</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/Lambda/"><span class="level-start"><span class="level-item">Lambda</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/Route-53/"><span class="level-start"><span class="level-item">Route 53</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AWS/S3/"><span class="level-start"><span class="level-item">S3</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Computer-Science/"><span class="level-start"><span class="level-item">Computer Science</span></span><span class="level-end"><span class="level-item tag">19</span></span></a><ul><li><a class="level is-mobile" href="/categories/Computer-Science/Compilers/"><span class="level-start"><span class="level-item">Compilers</span></span><span class="level-end"><span class="level-item tag">17</span></span></a></li><li><a class="level is-mobile" href="/categories/Computer-Science/Data-Structures/"><span class="level-start"><span class="level-item">Data Structures</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Programming/"><span class="level-start"><span class="level-item">Programming</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Programming/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/"><img src="/gallery/thumbnails/27.png" alt="Mi primer proyecto utilizando Yacc y Lex"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-10-01T21:03:28.000Z">2020-10-01</time></p><p class="title"><a href="/2020/10/01/27-Mi-primer-proyecto-utilizando-Yacc-y-Lex/">Mi primer proyecto utilizando Yacc y Lex</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/"><img src="/gallery/thumbnails/26.png" alt="Intérprete sencillo utilizando PLY con Python 3"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-03-16T01:09:28.000Z">2020-03-15</time></p><p class="title"><a href="/2020/03/15/26-Interprete-sencillo-utilizando-PLY/">Intérprete sencillo utilizando PLY con Python 3</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/"><img src="/gallery/thumbnails/25.png" alt="Intérprete sencillo utilizando JavaCC"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-03-07T19:53:33.000Z">2020-03-07</time></p><p class="title"><a href="/2020/03/07/25-Interprete-sencillo-utilizando-Javacc/">Intérprete sencillo utilizando JavaCC</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/"><img src="/gallery/thumbnails/24.png" alt="Mi primer proyecto utilizando PLY con Python 3"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-02-10T22:17:25.000Z">2020-02-10</time></p><p class="title"><a href="/2020/02/10/24-Mi-primer-proyecto-utilizando-PLY/">Mi primer proyecto utilizando PLY con Python 3</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/"><img src="/gallery/thumbnails/23.png" alt="Mi primer proyecto utilizando JavaCC"></a></figure><div class="media-content"><p class="date"><time dateTime="2020-02-10T22:14:34.000Z">2020-02-10</time></p><p class="title"><a href="/2020/02/10/23-Mi-primer-proyecto-utilizando-JavaCC/">Mi primer proyecto utilizando JavaCC</a></p><p class="categories"><a href="/categories/Computer-Science/">Computer Science</a> / <a href="/categories/Computer-Science/Compilers/">Compilers</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">October 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/03/"><span class="level-start"><span class="level-item">March 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/02/"><span class="level-start"><span class="level-item">February 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">August 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">July 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">May 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">April 2019</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Alexa-Skills/"><span class="tag">Alexa Skills</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CloudFront/"><span class="tag">CloudFront</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Compilers/"><span class="tag">Compilers</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data-Structures/"><span class="tag">Data Structures</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EC2/"><span class="tag">EC2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Lambda/"><span class="tag">Lambda</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Route-53/"><span class="tag">Route 53</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/S3/"><span class="tag">S3</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Visual-Basic/"><span class="tag">Visual Basic</span><span class="tag">4</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Erick Navarro" height="28"></a><p class="is-size-7"><span>&copy; 2025 Erick Navarro</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
